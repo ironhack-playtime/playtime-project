@@ -8,7 +8,9 @@ const debug = require('debug')("app:auth:local");
 const router = require('express').Router();
 
 router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+  res.render("auth/signup", {
+    user: req.user
+  });
 });
 
 router.post("/signup", (req, res, next) => {
@@ -55,8 +57,10 @@ router.post("/signup", (req, res, next) => {
 });
 
 router.get('/login', (req, res) => {
-  res.render('auth/login', {
-    message: req.flash("error")
+  res.render('auth/login',  {
+    user: req.user,
+  
+    message: req.flash("error"),
   });
 });
 

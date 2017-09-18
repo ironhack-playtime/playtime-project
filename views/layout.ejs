@@ -3,6 +3,19 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <% if(user) { %>
+      <h2>Hola usuario <%= user.username %></h2>
+      <form action="/logout" method="POST">
+        <button>Logout</button>
+      </form>
+      <a href="/dashboard">dashboard</a>
+      <a href="/dashboard/new">new match</a>
+      
+    <% }else{ %>
+      <a href="/signup">Signup</a>
+      <a href="/login">Login</a>
+      <a href="/auth/facebook">Login CON FACEBOOK</a>
+    <% } %>
   </head>
   <body>
     <h1><%= title %></h1>
