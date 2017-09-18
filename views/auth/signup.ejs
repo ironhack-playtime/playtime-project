@@ -1,12 +1,21 @@
 <!-- views/auth/signup.ejs -->
 <h2>Signup</h2>
 
-<form action="/signup" method="POST" id="form-container">
+<form action="/signup" enctype="multipart/form-data" method="POST" id="form-container">
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow">
   <br><br>
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
+  <br><br>
+  <label for="phone">Phone</label>
+  <input id="phone" type="number" name="phone" placeholder="Phone number">
+  <br><br>
+  <label for="mail">Email</label>
+  <input id="mail" type="text" name="mail" placeholder="name@domain.com">
+  <br><br>
+  <label for="avatar"> Avatar </label>
+  <input type="file" name="avatar" id="avatar" placeholder="Your picture">
 
   <% if (typeof message !== "undefined") { %>
     <div class="error-message"><%= message %></div>

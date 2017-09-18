@@ -9,7 +9,7 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
 const MongoStore = require("connect-mongo")(session);
-require('dotenv').config()
+require('dotenv').config();
 
 
 const authRoutes = require('./routes/auth');
