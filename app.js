@@ -15,7 +15,7 @@ const authRoutes = require('./routes/auth');
 const debug = require('debug')("app:"+path.basename(__filename).split('.')[0]);
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/passport-local",{useMongoClient:true})
+mongoose.connect("mongodb://localhost/playtime",{useMongoClient:true})
         .then(()=> debug("connected to db!"));
 
 var app = express();
