@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const matchSchema = new Schema({
-  players: Array,
   date: Date,
   sport: String,
   creator: String,
-  location: { type: { type: String }, coordinates: [Number] },
+  players: Array,
+  location: { type: { type: String, coordinates: [Number] }},
   playersNumber: Number
 },
   {
@@ -14,6 +14,6 @@ const matchSchema = new Schema({
 });
 
 matchSchema.index({ location: '2dsphere' });
-const match = mongoose.model("Match", matchSchema);
+const Match = mongoose.model("Match", matchSchema);
 
-module.exports = match;
+module.exports = Match;

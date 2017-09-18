@@ -5,11 +5,15 @@ const debug = require('debug')("app:auth:local");
 const router = require('express').Router();
 
 router.get('/dashboard', (req, res) => {
-  res.render('dashboard/dashboard',{user:req.user});
+  res.render('dashboard/dashboard', {
+    user: req.user
+  });
 });
 
 router.get('/dashboard/new', (req, res) => {
-  res.render('dashboard/new',{user:req.user});
+  res.render('dashboard/new', {
+    user: req.user
+  });
 });
 
 router.post('/dashboard/new', (req, res) => {
@@ -24,23 +28,25 @@ router.post('/dashboard/new', (req, res) => {
     return;
   }
 
-    debug("Match created");
+  debug("Match created");
 
-    new Match({
-        date,
-        sport,
-        playersNumber
-      })
-      .save()
-      .then(match => res.redirect('/dashboard'))
-      .catch(e => res.render("dashboard/new", {
-        message: "Something went wrong"
-      }));
+  const newMatch = new Match({
+      date,
+      sport,
+      playersNumber
+    })
+    .save()
+    .then(match => res.redirect('/dashboard'))
+    .catch(e => res.render("dashboard/new", {
+      message: "Something went wrong"
+    }));
 
 });
 
 router.get('/dashboard/view', (req, res) => {
-  res.render('dashboard/view',{user:req.user});
+  res.render('dashboard/view', {
+    user: req.user
+  });
 });
 
 
