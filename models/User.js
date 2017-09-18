@@ -1,11 +1,12 @@
-// models/user.js
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
   password: String,
-  facebookID: String
+  phone: Number ,
+  mail:String,
+  avatar: String
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
