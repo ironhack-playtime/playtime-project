@@ -14,10 +14,12 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const phone = req.body.phone;
+  const mail = req.body.mail;
 
-  if (username === "" || password === "") {
+  if (username === "" || password === "" || phone === "" || mail === "") {
     res.render("auth/signup", {
-      message: "Indicate username and password"
+      message: "All fields requiered"
     });
     return;
   }
@@ -39,7 +41,9 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
         username,
-        password: hashPass
+        password: hashPass,
+        phone,
+        mail
       })
       .save()
       .then(user => res.redirect('/'))
@@ -49,7 +53,6 @@ router.post("/signup", (req, res, next) => {
 
   });
 });
-
 
 router.get('/login', (req, res) => {
   res.render('auth/login', {

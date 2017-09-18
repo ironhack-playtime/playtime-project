@@ -17,7 +17,7 @@ router.post('/dashboard/new', (req, res) => {
   const sport = req.body.sport;
   const playersNumber = req.body.maxnum;
 
-  if (date === "" || sport === "" || playersNumber === "") {
+  if (date === "" || sport === "" || playersNumber === 0) {
     res.render("dashboard/new", {
       message: "All fields required"
     });
@@ -26,7 +26,7 @@ router.post('/dashboard/new', (req, res) => {
 
     debug("Match created");
 
-    const newMatch = new Match({
+    new Match({
         date,
         sport,
         playersNumber

@@ -13,7 +13,7 @@ require('dotenv').config();
 
 
 const authRoutes = require('./routes/auth');
-const dashboradRoutes = require('./routes/dashboard');
+const dashboardRoutes = require('./routes/dashboard');
 
 const debug = require('debug')("app:"+path.basename(__filename).split('.')[0]);
 
@@ -62,7 +62,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRoutes);
-app.use('/', dashboradRoutes);
+app.use('/', dashboardRoutes);
 app.get('/', (req,res) => res.render('home',{user:req.user}));
 
 
