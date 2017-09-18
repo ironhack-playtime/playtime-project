@@ -16,13 +16,19 @@ router.post("/signup", (req, res, next) => {
   const password = req.body.password;
 
   if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+    res.render("auth/signup", {
+      message: "Indicate username and password"
+    });
     return;
   }
 
-  User.findOne({ username }, "username", (err, user) => {
+  User.findOne({
+    username
+  }, "username", (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.render("auth/signup", {
+        message: "The username already exists"
+      });
       return;
     }
 
@@ -32,19 +38,23 @@ router.post("/signup", (req, res, next) => {
     debug("User created");
 
     const newUser = new User({
-      username,
-      password: hashPass
-    })
-    .save()
-    .then(user => res.redirect('/'))
-    .catch(e => res.render("auth/signup", { message: "Something went wrong" }));
+        username,
+        password: hashPass
+      })
+      .save()
+      .then(user => res.redirect('/'))
+      .catch(e => res.render("auth/signup", {
+        message: "Something went wrong"
+      }));
 
   });
 });
 
 
-router.get('/login',(req,res) =>{
-  res.render('auth/login',{ message: req.flash("error") });
+router.get('/login', (req, res) => {
+  res.render('auth/login', {
+    message: req.flash("error")
+  });
 });
 
 router.post("/login", passport.authenticate("local", {
@@ -54,7 +64,7 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-router.post('/logout',(req,res) =>{
+router.post('/logout', (req, res) => {
   req.logout();
   res.redirect("/");
 });
@@ -65,13 +75,17 @@ router.get("/auth/facebook/callback", passport.authenticate("facebook", {
   successRedirect: "/dashboard",
   failureRedirect: "/"
 }));
-router.get('/dashboard',(req,res)=>{
-res.render('Dashboard/dashboard')
+
+router.get('/dashboard', (req, res) => {
+  res.render('Dashboard/dashboard');
 });
-router.get('/dashboard/new',(req,res)=>{
-  res.render('Dashboard/new')
-  });
-  router.get('/dashboard/view',(req,res)=>{
-    res.render('Dashboard/view')
-    });
+
+router.get('/dashboard/new', (req, res) => {
+  res.render('Dashboard/new');
+});
+
+router.get('/dashboard/view', (req, res) => {
+  res.render('Dashboard/view');
+});
+
 module.exports = router;
