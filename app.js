@@ -29,12 +29,12 @@ app.use(expressLayouts);
 app.use(flash());
 
 app.use((req,res,next) =>{
-  res.locals.title = "Auth example";
+  res.locals.title = "Playtime";
   next();
 });
 
 app.use(session({
-  secret: "our-passport-local-strategy-app",
+  secret: "choose life",
   resave: true,
   saveUninitialized: true,
   store: new MongoStore({
