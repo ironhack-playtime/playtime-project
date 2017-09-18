@@ -3,16 +3,17 @@ const Schema   = mongoose.Schema;
 
 const matchSchema = new Schema({
   players: Array,
-  date:Date,
-  sport:String,
-  creator:String,
+  date: Date,
+  sport: String,
+  creator: String,
   location: { type: { type: String }, coordinates: [Number] },
-  playersNumber:Number
+  playersNumber: Number
 },
   {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
-RestaurantSchema.index({ location: '2dsphere' });
+
+matchSchema.index({ location: '2dsphere' });
 const match = mongoose.model("match", matchSchema);
 
 module.exports = match;
