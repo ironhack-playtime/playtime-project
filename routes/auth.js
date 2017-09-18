@@ -76,16 +76,5 @@ router.get("/auth/facebook/callback", passport.authenticate("facebook", {
   failureRedirect: "/"
 }));
 
-router.get('/dashboard', (req, res) => {
-  res.render('Dashboard/dashboard');
-});
-
-router.get('/dashboard/new', (req, res) => {
-  res.render('Dashboard/new');
-});
-
-router.get('/dashboard/view', (req, res) => {
-  res.render('Dashboard/view');
-});
 
 module.exports = router;
