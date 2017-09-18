@@ -9,14 +9,16 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
 const MongoStore = require("connect-mongo")(session);
+require('dotenv').config()
+
 
 const authRoutes = require('./routes/auth');
 
 const debug = require('debug')("app:"+path.basename(__filename).split('.')[0]);
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/playtime",{useMongoClient:true})
-        .then(()=> debug("connected to db!"));
+mongoose.connect(process.env.PATH_DBURL,{useMongoClient:true})
+        .then(()=> console.log("connected to db!"));
 
 var app = express();
 
@@ -34,7 +36,7 @@ app.use((req,res,next) =>{
 });
 
 app.use(session({
-  secret: "choose life",
+  secret: process.env.PATH_SECRET,
   resave: true,
   saveUninitialized: true,
   store: new MongoStore({
