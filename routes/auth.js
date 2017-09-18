@@ -48,7 +48,7 @@ router.get('/login',(req,res) =>{
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/dashboard",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
@@ -62,8 +62,16 @@ router.post('/logout',(req,res) =>{
 
 router.get("/auth/facebook", passport.authenticate("facebook"));
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/",
+  successRedirect: "/dashboard",
   failureRedirect: "/"
 }));
-
+router.get('/dashboard',(req,res)=>{
+res.render('Dashboard/dashboard')
+});
+router.get('/dashboard/new',(req,res)=>{
+  res.render('Dashboard/new')
+  });
+  router.get('/dashboard/view',(req,res)=>{
+    res.render('Dashboard/view')
+    });
 module.exports = router;
