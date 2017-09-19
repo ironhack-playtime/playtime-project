@@ -89,9 +89,16 @@ module.exports = {
 
   },
   match_add:(req,res,next)=>{
-    console.log(req.user._id);
-    Match.players.push(req.user._id)
-    res.redirect('/dashboard')
-
+    console.log(req.user._id)
+    console.log(req.params.id);
+      Match.findByIdAndUpdate(req.params.id, {$push:{players:req.user._id}}, (err, match) => {
+        if (err) {
+          return res.render('dashboard/view', {user:req.user});
+        }
+        if (!match) {
+          return next(new Error('404'));
+        }
+        return res.redirect('/dashboard');
+      });
   }
 };
