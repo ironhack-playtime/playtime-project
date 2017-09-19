@@ -4,7 +4,7 @@
 
 <ul>
   <% matches.forEach( match => { %>
-    <a href="/dashboard/view"><li>
+    <a href="/dashboard/view/<%= match._id %>"><li>
         <%= match.date%>
         <br>
         <%= match.sport %>
