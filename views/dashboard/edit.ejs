@@ -1,6 +1,6 @@
 <h2>Edit a new match</h2>
 
-<form action="/dashboard/view/:id" method="POST" id="form-container">
+<form action="/dashboard/view/<%=match._id%>" method="POST" id="form-container">
   <label for="date">Date</label>
   <input id="date" type="date" name="date" value="<%= match.date.toISOString().substring(0,10) %>">
   <br><br>
