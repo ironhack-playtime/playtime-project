@@ -6,11 +6,11 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
     <% if(user) { %>
       <h2>Hola usuario <%= user.username %></h2>
       <form action="/logout" method="POST">
         <button>Logout</button>
+        <br><br>
       </form>
       <a href="/dashboard">dashboard</a>
       <a href="/dashboard/new">new match</a>

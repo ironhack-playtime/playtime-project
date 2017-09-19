@@ -20,6 +20,7 @@ module.exports = {
     const date = req.body.date;
     const sport = req.body.sport;
     const playersNumber = req.body.maxnum;
+    console.log (req.body)
 
     if (date === "" || sport === "" || playersNumber === 0) {
       res.render("dashboard/new", {
