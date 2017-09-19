@@ -4,13 +4,14 @@
 
 <ul>
   <% matches.forEach( match => { %>
-    <li>
-        <%= match.date %>
-    </li>
-    <li>
+    <a href="/dashboard/view"><li>
+        <%= match.date%>
+        <br>
         <%= match.sport %>
-    </li>
+    </li></a>
+    <br>
     <%  }) %>
 </ul>
 
 <a href="/">Back home...</a>
+)
