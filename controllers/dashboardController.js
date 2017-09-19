@@ -1,11 +1,12 @@
 const Match = require("../models/match");
+const user=require("../models/match")
 const path = require('path');
 const debug = require('debug')("app:auth:local");
 
 
 module.exports = {
   dashboards: (req, res, next) => {
-    Match.find()
+    Match.find().populate("players")
       .then( result =>   res.render('dashboard/dashboard', {
           user: req.user,
           matches: result

@@ -5,7 +5,7 @@ const matchSchema = new Schema({
   date: Date,
   sport: String,
   creator: String,
-  players: Array,
+  players: [{type:Schema.Types.ObjectId, ref:"User"}],
   location: { type: { type: String, coordinates: [Number] }},
   playersNumber: Number
 },
