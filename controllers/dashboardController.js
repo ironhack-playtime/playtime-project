@@ -44,7 +44,10 @@ module.exports = {
     },
 
   dashboard: (req, res) => {
-    res.render('dashboard/view', {
-      user: req.user
-    });}
+    Match.findById(req.params.id, (err, match) => {
+      if (err)       { return next(err) }
+      if (!match) { return next(new Error("404")) }
+      return res.render('dashboard/view', { user: req.user, match})
+    });
+    }
 };
