@@ -1,6 +1,9 @@
 <h1>Hola <%= user.username %></h1>
 
 <h2>List of matches</h2>
+<% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
 
 <ul>
   <% matches.forEach( match => { %>

@@ -90,8 +90,12 @@ module.exports = {
 
   },
   match_add:(req,res,next)=>{
-    console.log(req.user._id)
-    console.log(req.params.id);
+    Match.findById(req.params.id, (err, match)=>{
+      console.log("voy a ver si estas")
+     if(match.players.indexOf(req.user._id)>=0)
+     {console.log("capullo estas");
+     res.redirect("/dashboard");}
+      else {
       Match.findByIdAndUpdate(req.params.id, {$push:{players:req.user._id}}, (err, match) => {
         if (err) {
           return res.render('dashboard/view', {user:req.user});
@@ -101,5 +105,7 @@ module.exports = {
         }
         return res.redirect('/dashboard');
       });
-  }
+    }
+    })
+    }
 };
