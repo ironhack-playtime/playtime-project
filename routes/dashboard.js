@@ -14,6 +14,6 @@ router.get('/dashboard/view/:id', dashboardController.match_edit);
 
 router.post('/dashboard/view/:id', dashboardController.match_update);
 
-
+router.get('/dashboard/view/delete/:id',dashboardController.match_delete );
 
 module.exports = router;

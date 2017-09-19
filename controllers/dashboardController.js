@@ -78,5 +78,14 @@ module.exports = {
       }
       return res.redirect('/dashboard');
     });
+  
+
+    },
+    match_delete:(req,res,next)=>{
+      Match.findByIdAndRemove(req.params.id,(err,match)=>{
+
+          res.redirect('/dashboard')
+      })
+
   }
 };
