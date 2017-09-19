@@ -1,5 +1,14 @@
-<h1>hola 
-    <%= user.username %>
-    soy un dashboard 
-    </h1>
-   
+<h1>Hola <%= user.username %></h1>
+
+<ul>
+  <% matches.forEach( m => { %>
+    <li>
+        <%= m.date %><
+    </li>
+    <li>
+        <%= m.sport %><
+    </li>
+    <%  }) %>
+</ul>
+
+<a href="/">Back home...</a>

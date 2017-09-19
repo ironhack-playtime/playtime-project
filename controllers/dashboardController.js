@@ -5,7 +5,8 @@ const debug = require('debug')("app:auth:local");
 module.exports = {
   dashboard: (req, res, next) => {
     res.render('dashboard/dashboard', {
-      user: req.user
+      user: req.user,
+      // match: req.match
     });},
 
   new_dashboard: (req, res) => {
