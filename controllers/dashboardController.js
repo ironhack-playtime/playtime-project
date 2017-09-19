@@ -57,7 +57,7 @@ module.exports = {
     const updates = {
       date: req.body.date,
       sport: req.body.sport,
-      maxnum: req.body.maxnum,
+      playersNumber: req.body.maxnum,
     };
     console.log(updates, req.params.id);
     Match.findByIdAndUpdate(req.params.id, updates, (err, match) => {
