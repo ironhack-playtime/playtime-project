@@ -46,6 +46,8 @@ module.exports = {
 
   match_edit: (req, res) => {
     Match.findById(req.params.id, (err, match) => {
+      const eleditado=req.params.id;
+      console.log(eleditado)
       if (err)       { return next(err) }
       if (!match) { return next(new Error("404")) }
       return res.render('dashboard/edit', { user: req.user, match})
@@ -60,7 +62,7 @@ module.exports = {
       maxnum: req.body.maxnum,
     };
     console.log(updates, req.params.id);
-    Match.findByIdAndUpdate(${req.params.id}, updates, (err, match) => {
+    Match.findByIdAndUpdate(req.params.id, updates, (err, match) => {
       if (err) {
         return res.render('dashboard/view', {
           match,
