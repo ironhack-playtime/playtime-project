@@ -10,7 +10,10 @@ router.get('/dashboard/new', dashboardController.new_dashboard);
 
 router.post('/dashboard/new', dashboardController.new_dashboard_post);
 
-router.get('/dashboard/view/:id', dashboardController.dashboard);
+router.get('/dashboard/view/:id', dashboardController.match_edit);
+
+router.post('/dashboard/view/:id', dashboardController.match_update);
+
 
 
 module.exports = router;

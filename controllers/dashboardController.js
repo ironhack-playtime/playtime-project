@@ -2,6 +2,7 @@ const Match = require("../models/match");
 const path = require('path');
 const debug = require('debug')("app:auth:local");
 
+
 module.exports = {
   dashboards: (req, res, next) => {
     Match.find()
@@ -43,11 +44,32 @@ module.exports = {
       }));
     },
 
-  dashboard: (req, res) => {
+  match_edit: (req, res) => {
     Match.findById(req.params.id, (err, match) => {
       if (err)       { return next(err) }
       if (!match) { return next(new Error("404")) }
-      return res.render('dashboard/view', { user: req.user, match})
+      return res.render('dashboard/edit', { user: req.user, match})
     });
-    }
+    },
+
+  match_update: (req, res, next) => {
+    
+    const updates = {
+      date: req.body.date,
+      sport: req.body.sport,
+      maxnum: req.body.maxnum,
+    };
+    console.log(updates, req.params.id);
+    Match.findByIdAndUpdate(${req.params.id}, updates, (err, match) => {
+      if (err) {
+        return res.render('dashboard/view', {
+          match,
+        });
+      }
+      if (!match) {
+        return next(new Error('404'));
+      }
+      return res.redirect(`/dashboard`);
+    });
+  }
 };
