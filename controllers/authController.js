@@ -7,7 +7,9 @@ const debug = require('debug')("app:auth:local");
 
 module.exports = {
   signup: (req, res, next) => {
-    res.render("auth/signup");
+    res.render("auth/signup", {
+      user: req.user
+    });
   },
   signup_post: (req, res, next) => {
     const username = req.body.username;
@@ -53,6 +55,7 @@ module.exports = {
   },
   login: (req, res, next) => {
     res.render('auth/login', {
+      user: req.user,
       message: req.flash("error")
     });
   },
