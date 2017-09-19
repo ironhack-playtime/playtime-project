@@ -6,8 +6,11 @@
   <% matches.forEach( match => { %>
     <a href="/dashboard/view/<%= match._id %>"><li>
         <%= match.date%>
+        <a href="/dashboard/view/<%= match._id %>/new-player">añadirme al partido</a>
         <br>
         <%= match.sport %>
+        <br>
+     <p>jugadores:   <%= match.players %></p>
     </a>
     <br>
     <a href="/dashboard/view/delete/<%= match._id%>">Delete item</a>

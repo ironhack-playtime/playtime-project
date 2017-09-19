@@ -80,5 +80,11 @@ module.exports = {
           res.redirect('/dashboard')
       })
 
+  },
+  match_add:(req,res,next)=>{
+    console.log(req.user._id);
+    Match.players.push(req.user._id)
+    res.redirect('/dashboard')
+
   }
 };
