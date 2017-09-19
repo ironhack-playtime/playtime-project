@@ -1,15 +1,15 @@
 <h1>Hola <%= user.username %></h1>
 
 <h2>List of matches</h2>
-<% if (typeof message !== "undefined") { %>
-    <div class="error-message"><%= message %></div>
-  <% } %>
+
 
 <ul>
   <% matches.forEach( match => { %>
     <a href="/dashboard/view/<%= match._id %>"><li>
         <%= match.date%>
         <a href="/dashboard/view/<%= match._id %>/new-player">añadirme al partido</a>
+        <br>
+        <a href="/dashboard/<%= match._id %>/deletemiself">delete me from the list</a>
         <br>
         <%= match.sport %>
         <br>

@@ -8,7 +8,7 @@ passport.use(new FbStrategy({
   callbackURL: "/auth/facebook/callback"
 }, (accessToken, refreshToken, profile, next) => {
   console.log(profile);
-  User.findOne({ facebookID: profile.id }, (err, user) => {
+  User.findOne({ FBID: profile.id }, (err, user) => {
     if (err) {
       return next(err);
     }
@@ -17,7 +17,7 @@ passport.use(new FbStrategy({
     }
 
     const newUser = new User({
-      facebookID: profile.id,
+      FBID: profile.id,
       username: profile.displayName
     });
 

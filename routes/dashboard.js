@@ -17,4 +17,7 @@ router.post('/dashboard/view/:id', dashboardController.match_update);
 router.get('/dashboard/view/delete/:id',dashboardController.match_delete );
 
 router.get('/dashboard/view/:id/new-player',dashboardController.match_add );
+
+router.get('/dashboard/:id/deletemiself',dashboardController.match_deleteme );
+
 module.exports = router;

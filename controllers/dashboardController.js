@@ -107,5 +107,18 @@ module.exports = {
       });
     }
     })
+    },
+    match_deleteme:(req,res,next)=>{
+      console.log(req.params.id)
+      console.log(req.user._id)
+      Match.findByIdAndUpdate(req.params.id, {$pull:{players:req.user._id}}, (err, match) => {
+        if (err) {
+          return res.redirect('/dashboard');
+        }
+        if (!match) {
+          return next(new Error('404'));
+        }
+        return res.redirect('/dashboard');
+      });
     }
 };
