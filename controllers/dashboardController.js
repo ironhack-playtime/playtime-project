@@ -1,5 +1,5 @@
 const Match = require("../models/match");
-const user=require("../models/match")
+const user = require("../models/match");
 const path = require('path');
 const debug = require('debug')("app:auth:local");
 
@@ -7,16 +7,17 @@ const debug = require('debug')("app:auth:local");
 module.exports = {
   dashboards: (req, res, next) => {
     Match.find().populate("players")
-      .then( result =>   res.render('dashboard/dashboard', {
-          user: req.user,
-          matches: result
-        }));
+      .then(result => res.render('dashboard/dashboard', {
+        user: req.user,
+        matches: result
+      }));
   },
 
   new_dashboard: (req, res) => {
     res.render('dashboard/new', {
       user: req.user
-    });},
+    });
+  },
 
   new_dashboard_post: (req, res) => {
     const date = req.body.date;
@@ -42,16 +43,16 @@ module.exports = {
       .catch(e => res.render("dashboard/new", {
         message: "Something went wrong"
       }));
-    },
+  },
 
   match_edit: (req, res) => {
     Match.findById(req.params.id, (err, match) => {
       if (err) {
-        return next (err);
+        return next(err);
       }
 
       if (!match) {
-        return next (new Error("404"));
+        return next(new Error("404"));
       }
 
       return res.render('dashboard/edit', {
@@ -79,46 +80,56 @@ module.exports = {
       }
       return res.redirect('/dashboard');
     });
-  
 
-    },
-    match_delete:(req,res,next)=>{
-      Match.findByIdAndRemove(req.params.id,(err,match)=>{
-
-          res.redirect('/dashboard')
-      })
 
   },
-  match_add:(req,res,next)=>{
-    Match.findById(req.params.id, (err, match)=>{
-      console.log("voy a ver si estas")
-     if(match.players.indexOf(req.user._id)>=0)
-     {console.log("capullo estas");
-     res.redirect("/dashboard");}
-      else {
-      Match.findByIdAndUpdate(req.params.id, {$push:{players:req.user._id}}, (err, match) => {
-        if (err) {
-          return res.render('dashboard/view', {user:req.user});
-        }
-        if (!match) {
-          return next(new Error('404'));
-        }
-        return res.redirect('/dashboard');
-      });
-    }
-    })
-    },
-    match_deleteme:(req,res,next)=>{
-      console.log(req.params.id)
-      console.log(req.user._id)
-      Match.findByIdAndUpdate(req.params.id, {$pull:{players:req.user._id}}, (err, match) => {
-        if (err) {
+
+  match_delete: (req, res, next) => {
+    Match.findByIdAndRemove(req.params.id, (err, match) => {
+
+      res.redirect('/dashboard');
+    });
+
+  },
+
+  match_add: (req, res, next) => {
+    Match.findById(req.params.id, (err, match) => {
+      if (match.players.indexOf(req.user._id) >= 0) {
+        res.redirect("/dashboard");
+      } else {
+        Match.findByIdAndUpdate(req.params.id, {
+          $push: {
+            players: req.user._id
+          }
+        }, (err, match) => {
+          if (err) {
+            return res.render('dashboard/view', {
+              user: req.user
+            });
+          }
+          if (!match) {
+            return next(new Error('404'));
+          }
           return res.redirect('/dashboard');
-        }
-        if (!match) {
-          return next(new Error('404'));
-        }
+        });
+      }
+    });
+  },
+
+  match_deleteme: (req, res, next) => {
+    Match.findByIdAndUpdate(req.params.id, {
+      $pull: {
+        players: req.user._id
+      }
+    }, (err, match) => {
+      if (err) {
         return res.redirect('/dashboard');
-      });
-    }
+      }
+      if (!match) {
+        return next(new Error('404'));
+      }
+      return res.redirect('/dashboard');
+    });
+  }
+
 };
