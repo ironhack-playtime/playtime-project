@@ -3,11 +3,13 @@ const path = require('path');
 const debug = require('debug')("app:auth:local");
 
 module.exports = {
-  dashboard: (req, res, next) => {
-    res.render('dashboard/dashboard', {
-      user: req.user,
-      // match: req.match
-    });},
+  dashboards: (req, res, next) => {
+    Match.find()
+      .then( result =>   res.render('dashboard/dashboard', {
+          user: req.user,
+          matches: result
+        }));
+  },
 
   new_dashboard: (req, res) => {
     res.render('dashboard/new', {
@@ -40,7 +42,7 @@ module.exports = {
       }));
     },
 
-  dashboards: (req, res) => {
+  dashboard: (req, res) => {
     res.render('dashboard/view', {
       user: req.user
     });}

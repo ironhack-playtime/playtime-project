@@ -1,12 +1,14 @@
 <h1>Hola <%= user.username %></h1>
 
+<h2>List of matches</h2>
+
 <ul>
-  <% matches.forEach( m => { %>
+  <% matches.forEach( match => { %>
     <li>
-        <%= m.date %><
+        <%= match.date %>
     </li>
     <li>
-        <%= m.sport %><
+        <%= match.sport %>
     </li>
     <%  }) %>
 </ul>

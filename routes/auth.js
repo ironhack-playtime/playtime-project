@@ -1,4 +1,3 @@
-const User = require("../models/user");
 const auth = require("../controllers/authController");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
