@@ -21,7 +21,6 @@ module.exports = {
     const date = req.body.date;
     const sport = req.body.sport;
     const playersNumber = req.body.maxnum;
-    console.log (req.body)
 
     if (date === "" || sport === "" || playersNumber === 0) {
       res.render("dashboard/new", {
@@ -47,18 +46,19 @@ module.exports = {
   match_edit: (req, res) => {
     Match.findById(req.params.id, (err, match) => {
       if (err) {
-        return next(err);
-      }
-      if (!match) {
-        return next(new Error("404"));
+        return next (err);
       }
 
+      if (!match) {
+        return next (new Error("404"));
+      }
 
       return res.render('dashboard/edit', {
-        user: req.user, match
+        user: req.user,
+        match
       });
     });
-    },
+  },
 
   match_update: (req, res, next) => {
     const updates = {
@@ -76,7 +76,7 @@ module.exports = {
       if (!match) {
         return next(new Error('404'));
       }
-      return res.redirect('/dashboard/view/:id');
+      return res.redirect('/dashboard');
     });
   }
 };
