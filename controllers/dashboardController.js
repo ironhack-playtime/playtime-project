@@ -58,8 +58,8 @@ module.exports = {
 
       return res.render('dashboard/edit', {
         user: req.user,
-        match,
-        Commets
+        match
+        
       });
     });
   },
