@@ -4,6 +4,7 @@ const bcryptSalt = 10;
 const path = require('path');
 const passport = require('passport');
 const debug = require('debug')("app:auth:local");
+const bodyParser = require('body-parser');
 
 module.exports = {
   signup: (req, res, next) => {
@@ -54,14 +55,47 @@ module.exports = {
 
     });
   },
+
   login: (req, res, next) => {
     res.render('auth/login', {
       user: req.user,
       message: req.flash("error")
     });
   },
+
   logout: (req, res, next) => {
     req.logout();
     res.redirect("/");
+  },
+
+  edit_view: (req, res, next) => {
+   
+    res.render('auth/edit', {user:req.user})
+
+
+  },
+
+  edit_post:(req,res,next)=>{
+    console.log(req.body);
+    const updates = {
+       username : req.body.username,
+       password :req.body.password,
+       phone : req.body.phone,
+       mail : req.body.mail
+    };
+    console.log(updates);
+
+    User.findByIdAndUpdate(req.user._id, updates, (err, match) => {
+      if (err) {
+        return res.render('auth/edit', {
+          user:req.user
+        });
+      }
+      if (!match) {
+        return next(new Error('404'));
+      }
+      return res.redirect('/dashboard');
+    });
+
   }
 };

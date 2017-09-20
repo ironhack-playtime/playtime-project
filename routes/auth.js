@@ -23,12 +23,16 @@ router.post("/login", passport.authenticate("local", {
 
 router.post('/logout', auth.logout);
 
+router.get("/edit/:id", auth.edit_view);
+
+router.post("/edit/:id", auth.edit_post);
 
 router.get("/auth/facebook", passport.authenticate("facebook"));
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
   successRedirect: "/dashboard",
   failureRedirect: "/"
 }));
+
 
 
 module.exports = router;
