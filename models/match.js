@@ -15,6 +15,7 @@ const matchSchema = new Schema({
 });
 
 matchSchema.index({ location: '2dsphere' });
+
 const Match = mongoose.model("Match", matchSchema);
 
 module.exports = Match;

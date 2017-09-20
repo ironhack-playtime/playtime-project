@@ -99,10 +99,7 @@ module.exports = {
         res.redirect("/dashboard");
       } else {
         Match.findByIdAndUpdate(req.params.id, {
-          $push: {
-            players: req.user._id
-          }
-        }, (err, match) => {
+          $push: { players: req.user._id}}, (err, match) => {
           if (err) {
             return res.render('dashboard/view', {
               user: req.user
@@ -157,7 +154,11 @@ module.exports = {
           description
         })
         .save()
-        .then(comment => res.redirect('/dashboard'))
+        .then(comment => {
+          console.log(comment._id);
+          console.log(req.params.id+ "el id del match se supone");
+          Match.findByIdAndUpdate(req.params.id,{$push: {"comments": comment._id}
+        }).then (match =>  res.redirect('/dashboard'));})
         .catch(e => res.render("comments/new-comment", { user: req.user,
           message: "Something went wrong"
         }));
