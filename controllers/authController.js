@@ -43,7 +43,8 @@ module.exports = {
           username,
           password: hashPass,
           phone,
-          mail
+          mail,
+          pic_path:`/avatars/${req.file.filename}`
         })
         .save()
         .then(user => res.redirect('/'))

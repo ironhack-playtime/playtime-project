@@ -4,12 +4,13 @@ const bcryptSalt = 10;
 const path = require('path');
 const passport = require('passport');
 const debug = require('debug')("app:auth:local");
-
+var multer  = require('multer');
 const router = require('express').Router();
+const upload=multer({dest:"./public/avatars/"})
 
 router.get("/signup", auth.signup);
 
-router.post("/signup", auth.signup_post);
+router.post("/signup",upload.single("avatar"), auth.signup_post);
 
 router.get('/login', auth.login);
 

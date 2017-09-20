@@ -7,7 +7,8 @@ const userSchema = new Schema({
   password: String,
   phone: Number ,
   mail:String,
-  avatar: String
+  pic_name: String,
+  pic_path:String
 }, {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 });
