@@ -6,6 +6,7 @@ const passport = require('passport');
 const debug = require('debug')("app:auth:local");
 const bodyParser = require('body-parser');
 
+
 module.exports = {
   signup: (req, res, next) => {
     res.render("auth/signup", {
@@ -69,21 +70,16 @@ module.exports = {
   },
 
   edit_view: (req, res, next) => {
-   
-    res.render('auth/edit', {user:req.user})
-
-
+    res.render('auth/edit', {user:req.user});
   },
 
   edit_post:(req,res,next)=>{
-    console.log(req.body);
     const updates = {
        username : req.body.username,
        password :req.body.password,
        phone : req.body.phone,
        mail : req.body.mail
     };
-    console.log(updates);
 
     User.findByIdAndUpdate(req.user._id, updates, (err, match) => {
       if (err) {
