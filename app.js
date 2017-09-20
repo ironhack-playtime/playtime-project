@@ -32,7 +32,7 @@ app.use(expressLayouts);
 app.use(flash());
 
 app.use((req,res,next) =>{
-  res.locals.title = "Playtime";
+  res.locals.title = "Playtime!";
   next();
 });
 

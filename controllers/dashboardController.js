@@ -131,6 +131,10 @@ module.exports = {
       }
       return res.redirect('/dashboard');
     });
+  },
+
+  new_comment: (req, res, next) => {
+    res.render("comments/new-comment", {user: req.user});
   }
 
 };
