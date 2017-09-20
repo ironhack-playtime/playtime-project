@@ -12,7 +12,8 @@
   <input id="maxnum" type="number" name="maxnum" placeholder="number">
 
   <br><br>
-
+  <input type="text" id="pac-input" class="controls" placeholder="Enter a location">
+  <div id="map"></div>
 
 
   <% if (typeof message !== "undefined") { %>
@@ -24,3 +25,5 @@
 
 
 </form>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5hcVxhgym7mjsNaBgBLw2SzB5jqO_C1o&libraries=places"></script>
+<script src="/javascripts/map.js"></script>
