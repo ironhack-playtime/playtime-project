@@ -1,6 +1,6 @@
 const Match = require("../models/match");
-const user = require("../models/match");
 const path = require('path');
+const Commets = require("../models/comment");
 const debug = require('debug')("app:auth:local");
 
 
@@ -57,7 +57,8 @@ module.exports = {
 
       return res.render('dashboard/edit', {
         user: req.user,
-        match
+        match,
+        Commets
       });
     });
   },

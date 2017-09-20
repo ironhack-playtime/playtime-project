@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const commentSchema = new Schema({
-  _creatorId: String,
-  _eventId: String,
+  _creatorId: [{type:Schema.Types.ObjectId, ref:"User"}],
+  _eventId: [{type:Schema.Types.ObjectId, ref:"Match"}],
   description: String,
 },
   {
