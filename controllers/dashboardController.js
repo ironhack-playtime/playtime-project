@@ -140,32 +140,28 @@ module.exports = {
   },
 
   add_comment: (req,res,next)=>{
-
-    console.log("peto al entrar")
- 
       const _creatorId = req.user.id;
-      console.log("CREATOR: " + _creatorId);
       const description = req.body.comment;
-  
+
       if (description === "") {
         res.render("comments/new-comment", { user: req.user,
           message: "Write something"
         });
         return;
       }
-  
+
       debug("Comment created");
-  
+
       const newComment = new Comment({
           _creatorId,
           description
         })
         .save()
-        .then(match => res.redirect('/dashboard'))
+        .then(comment => res.redirect('/dashboard'))
         .catch(e => res.render("comments/new-comment", { user: req.user,
           message: "Something went wrong"
         }));
     },
-  
+
 
 };
