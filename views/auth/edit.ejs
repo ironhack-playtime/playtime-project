@@ -1,0 +1,26 @@
+<h2>Edit</h2>
+
+<form action="/edit/<%= user._id%>" method="POST" id="form-container" >
+  <label for="username">Username</label>
+  <input id="username" type="text" name="username" placeholder="JonSnow"value="<%= user.username %>">
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password" placeholder="Your password">
+  <br><br>
+  <label for="phone">Phone</label>
+  <input id="phone" type="number" name="phone" placeholder="Phone number"value="<%= user.phone %>">
+  <br><br>
+  <label for="mail">Email</label>
+  <input id="mail" type="text" name="mail" placeholder="name@domain.com"value="<%= user.mail %>">
+  <br><br>
+  <label for="avatar"> Avatar </label>
+  <input type="file" name="avatar" id="avatar" placeholder="Your picture">
+
+  <% if (typeof message !== "undefined") { %>
+    <div class="error-message"><%= message %></div>
+  <% } %>
+  <br><br>
+
+  <button>Save</button>
+
+</form>
