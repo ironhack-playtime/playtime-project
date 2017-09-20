@@ -1,6 +1,6 @@
 const Match = require("../models/match");
 const path = require('path');
-const Commets = require("../models/comment");
+const Comment = require("../models/comment");
 const debug = require('debug')("app:auth:local");
 
 
@@ -134,7 +134,38 @@ module.exports = {
   },
 
   new_comment: (req, res, next) => {
-    res.render("comments/new-comment", {user: req.user});
-  }
+    Match.findById(req.params.id,(err, match)=>{
+    res.render("comments/new-comment", {user: req.user, match});
+  });
+  },
+
+  add_comment: (req,res,next)=>{
+
+    console.log("peto al entrar")
+ 
+      const _creatorId = req.user.id;
+      console.log("CREATOR: " + _creatorId);
+      const description = req.body.comment;
+  
+      if (description === "") {
+        res.render("comments/new-comment", { user: req.user,
+          message: "Write something"
+        });
+        return;
+      }
+  
+      debug("Comment created");
+  
+      const newComment = new Comment({
+          _creatorId,
+          description
+        })
+        .save()
+        .then(match => res.redirect('/dashboard'))
+        .catch(e => res.render("comments/new-comment", { user: req.user,
+          message: "Something went wrong"
+        }));
+    },
+  
 
 };
