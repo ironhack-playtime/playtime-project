@@ -100,7 +100,10 @@ module.exports = {
         res.redirect("/dashboard");
       } else {
         Match.findByIdAndUpdate(req.params.id, {
-          $push: { players: req.user._id}}, (err, match) => {
+          $push: {
+            players: req.user._id
+          }
+        }, (err, match) => {
           if (err) {
             return res.render('dashboard/view', {
               user: req.user
@@ -132,38 +135,45 @@ module.exports = {
   },
 
   new_comment: (req, res, next) => {
-    Match.findById(req.params.id,(err, match)=>{
-    res.render("comments/new-comment", {user: req.user, match});
-  });
+    Match.findById(req.params.id, (err, match) => {
+      res.render("comments/new-comment", {
+        user: req.user,
+        match
+      });
+    });
   },
 
-  add_comment: (req,res,next)=>{
-      const _creatorId = req.user.id;
-      const description = req.body.comment;
+  add_comment: (req, res, next) => {
+    const _creatorId = req.user.id;
+    const description = req.body.comment;
 
-      if (description === "") {
-        res.render("comments/new-comment", { user: req.user,
-          message: "Write something"
-        });
-        return;
-      }
+    if (description === "") {
+      res.render("comments/new-comment", {
+        user: req.user,
+        message: "Write something"
+      });
+      return;
+    }
 
-      debug("Comment created");
+    debug("Comment created");
 
-      const newComment = new Comment({
-          _creatorId,
-          description
-        })
-        .save()
-        .then(comment => {
-          console.log(comment._id);
-          console.log(req.params.id+ "el id del match se supone");
-          Match.findByIdAndUpdate(req.params.id,{$push: {"comments": comment._id}
-        }).then (match =>  res.redirect('/dashboard'));})
-        .catch(e => res.render("comments/new-comment", { user: req.user,
-          message: "Something went wrong"
-        }));
-    },
+    const newComment = new Comment({
+        _creatorId,
+        description
+      })
+      .save()
+      .then(comment => {
+        Match.findByIdAndUpdate(req.params.id, {
+          $push: {
+            "comments": comment._id
+          }
+        }).then(match => res.redirect('/dashboard'));
+      })
+      .catch(e => res.render("comments/new-comment", {
+        user: req.user,
+        message: "Something went wrong"
+      }));
+  },
 
 
 };
