@@ -5,6 +5,7 @@ const debug = require('debug')("app:auth:local");
 
 
 module.exports = {
+  
   dashboards: (req, res, next) => {
     Match.find().populate("players")
       .populate("comments")
@@ -74,6 +75,10 @@ module.exports = {
       date: req.body.date,
       sport: req.body.sport,
       playersNumber: req.body.maxnum,
+      location: {
+        type: "Point",
+        coordinates: [req.body.lat, req.body.lon]
+      }
     };
 
     Match.findByIdAndUpdate(req.params.id, updates, (err, match) => {

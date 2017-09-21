@@ -8,11 +8,13 @@ const bodyParser = require('body-parser');
 
 
 module.exports = {
+
   signup: (req, res, next) => {
     res.render("auth/signup", {
       user: req.user
     });
   },
+  
   signup_post: (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
