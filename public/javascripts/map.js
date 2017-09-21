@@ -1,4 +1,3 @@
-const Match = require("../models/match");
 
 function initMap() {
     var latitud = Number(document.getElementById('lat').value);
@@ -68,6 +67,6 @@ return {
     type:"Point",
     cooerdinates:[lat,long]
     }
- 
+
   }
   initMap();
