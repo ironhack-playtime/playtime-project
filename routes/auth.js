@@ -7,12 +7,13 @@ const debug = require('debug')("app:auth:local");
 const multer  = require('multer');
 const router = require('express').Router();
 const upload=multer({dest:"./public/avatars/"});
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
-router.get("/signup", auth.signup);
+router.get("/signup",ensureLoggedOut(), auth.signup);
 
 router.post("/signup",upload.single("avatar"), auth.signup_post);
 
-router.get('/login', auth.login);
+router.get('/login',ensureLoggedOut(), auth.login);
 
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/dashboard",
@@ -21,13 +22,13 @@ router.post("/login", passport.authenticate("local", {
   passReqToCallback: true
 }));
 
-router.post('/logout', auth.logout);
+router.post('/logout',ensureLoggedIn(), auth.logout);
 
-router.get("/edit/:id", auth.edit_view);
+router.get("/edit/:id", ensureLoggedIn(),auth.edit_view);
 
 router.post("/edit/:id", upload.single("avatar"), auth.edit_post);
 
-router.get("/auth/facebook", passport.authenticate("facebook"));
+router.get("/auth/facebook",ensureLoggedOut(), passport.authenticate("facebook"));
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
   successRedirect: "/dashboard",
   failureRedirect: "/"
