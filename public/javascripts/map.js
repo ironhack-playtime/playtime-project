@@ -1,3 +1,4 @@
+const Match = require("../models/match");
 
 function initMap() {
     var latitud = Number(document.getElementById('lat').value);
@@ -32,9 +33,6 @@ function initMap() {
         window.alert("No details available for input: '" + place.name + "'");
         return;
       }
-
-
-
       if (place.geometry.viewport) {
         map.fitBounds(place.geometry.viewport);
       } else {
@@ -66,6 +64,10 @@ function initMap() {
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, marker);
     });
-
+return {
+    type:"Point",
+    cooerdinates:[lat,long]
+    }
+ 
   }
   initMap();
