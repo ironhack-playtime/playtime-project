@@ -5,7 +5,7 @@ const debug = require('debug')("app:auth:local");
 
 
 module.exports = {
-  
+
   dashboards: (req, res, next) => {
     Match.find().populate("players")
       .populate("comments")
@@ -184,6 +184,12 @@ module.exports = {
         message: "Something went wrong"
       }));
   },
+
+  delete_comment: (req, res, next) => {
+    Match.findByIdAndUpdate(req.params.id, { $pull: { comments: req.params.comment}  })
+    .then(() => Comment.findByIdAndRemove(req.params.comment))
+    .then(res.redirect('/dashboard'))
+      .catch( e=>res.rendirect('/dashboard'));}
 
 
 };

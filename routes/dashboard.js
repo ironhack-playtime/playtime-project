@@ -24,4 +24,6 @@ router.get('/dashboard/:id/new-comment', dashboardController.new_comment);
 
 router.post('/dashboard/:id/new-comment', dashboardController.add_comment);
 
+router.get('/dashboard/:id/:comment', dashboardController.delete_comment);
+
 module.exports = router;

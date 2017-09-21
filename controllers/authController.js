@@ -14,7 +14,7 @@ module.exports = {
       user: req.user
     });
   },
-  
+
   signup_post: (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -80,25 +80,16 @@ module.exports = {
   edit_post:(req,res,next)=>{
     const img = (req.file) ? `/avatars/${req.file.filename}` : req.user.pic_path;
 
-    console.log("PASS: " + req.body.password);
-    console.log("PASSUSER: " + req.user.password);
     let hashPass = '';
     let password = req.body.password;
 
     if (req.body.password !== ""){
-      console.log("entro al if");
       let salt = bcrypt.genSaltSync(bcryptSalt);
       hashPass = bcrypt.hashSync(password, salt);
-      console.log("HASH: " + hashPass);
-      console.log("acabo el if");
     }
     else {
-      console.log("no hay pass nueva");
      hashPass = req.user.password;
-      console.log("HASH: " + hashPass);
     }
-
-    console.log("HASH fuera: " + hashPass);
 
     const updates = {
        username : req.body.username,

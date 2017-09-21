@@ -30,6 +30,7 @@
                 <% match.comments.forEach(c=>{ %>
                   <li>
                     <%= c.description %>
+                    <a href="/dashboard/<%= match._id%>/<%= c._id%>">Delete comment</a>
                   </li>
                   <% }) %>
               </ol>
