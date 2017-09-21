@@ -1,12 +1,13 @@
 const Match = require("../models/match");
-const user = require("../models/match");
 const path = require('path');
+const Comment = require("../models/comment");
 const debug = require('debug')("app:auth:local");
 
 
 module.exports = {
   dashboards: (req, res, next) => {
     Match.find().populate("players")
+      .populate("comments")
       .then(result => res.render('dashboard/dashboard', {
         user: req.user,
         matches: result
@@ -58,6 +59,7 @@ module.exports = {
       return res.render('dashboard/edit', {
         user: req.user,
         match
+        
       });
     });
   },
@@ -130,6 +132,48 @@ module.exports = {
       }
       return res.redirect('/dashboard');
     });
-  }
+  },
+
+  new_comment: (req, res, next) => {
+    Match.findById(req.params.id, (err, match) => {
+      res.render("comments/new-comment", {
+        user: req.user,
+        match
+      });
+    });
+  },
+
+  add_comment: (req, res, next) => {
+    const _creatorId = req.user.id;
+    const description = req.body.comment;
+
+    if (description === "") {
+      res.render("comments/new-comment", {
+        user: req.user,
+        message: "Write something"
+      });
+      return;
+    }
+
+    debug("Comment created");
+
+    const newComment = new Comment({
+        _creatorId,
+        description
+      })
+      .save()
+      .then(comment => {
+        Match.findByIdAndUpdate(req.params.id, {
+          $push: {
+            "comments": comment._id
+          }
+        }).then(match => res.redirect('/dashboard'));
+      })
+      .catch(e => res.render("comments/new-comment", {
+        user: req.user,
+        message: "Something went wrong"
+      }));
+  },
+
 
 };

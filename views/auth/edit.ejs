@@ -1,18 +1,17 @@
-<!-- views/auth/signup.ejs -->
-<h2>Signup</h2>
+<h2>Edit</h2>
 
-<form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
+<form action="/edit/<%= user._id%>" method="POST" id="form-container">
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <input id="username" type="text" name="username" placeholder="JonSnow"value="<%= user.username %>">
   <br><br>
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
   <br><br>
   <label for="phone">Phone</label>
-  <input id="phone" type="number" name="phone" placeholder="Phone number">
+  <input id="phone" type="number" name="phone" placeholder="Phone number"value="<%= user.phone %>">
   <br><br>
   <label for="mail">Email</label>
-  <input id="mail" type="text" name="mail" placeholder="name@domain.com">
+  <input id="mail" type="text" name="mail" placeholder="name@domain.com"value="<%= user.mail %>">
   <br><br>
   <label for="avatar"> Avatar </label>
   <input type="file" name="avatar" id="avatar" placeholder="Your picture">
@@ -22,10 +21,6 @@
   <% } %>
   <br><br>
 
-  <button>Create account</button>
+  <button>Save</button>
 
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
 </form>

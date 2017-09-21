@@ -1,4 +1,5 @@
 <h1>Hola <%= user.username %></h1>
+<img src="<%= user.pic_path %>"width="200px"height="200px">
 
 <h2>List of matches</h2>
 
@@ -23,9 +24,21 @@
                   <% }) %>
               </ol>
             </p>
+            <br>
+            <p>comentarios:
+              <ol>
+                <% match.comments.forEach(c=>{ %>
+                  <li>
+                    <%= c.description %>
+                  </li>
+                  <% }) %>
+              </ol>
+            </p>
     </a>
     <br>
     <a href="/dashboard/view/delete/<%= match._id%>">Delete item</a>
+    <br>
+    <a href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
     </li>
     <br>
     <%  }) %>

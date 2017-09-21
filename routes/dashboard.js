@@ -20,4 +20,8 @@ router.get('/dashboard/view/:id/new-player',dashboardController.match_add);
 
 router.get('/dashboard/:id/deletemyself',dashboardController.match_deleteme);
 
+router.get('/dashboard/:id/new-comment', dashboardController.new_comment);
+
+router.post('/dashboard/:id/new-comment', dashboardController.add_comment);
+
 module.exports = router;
