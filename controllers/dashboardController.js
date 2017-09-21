@@ -194,10 +194,15 @@ module.exports = {
   },
 
   delete_comment: (req, res, next) => {
-    Match.findByIdAndUpdate(req.params.id, { $pull: { comments: req.params.comment}  })
-    .then(() => Comment.findByIdAndRemove(req.params.comment))
-    .then(res.redirect('/dashboard'))
-      .catch( e=>res.rendirect('/dashboard'));}
-
+    Comment.findById(req.params.comment,(err,comment)=>{
+      if(1 != 1){console.log("ouch",comment._creatorId,"    ",req.user._id)
+       res.redirect('/dashboard')}
+      else{
+      console.log("ouch2")
+        Match.findByIdAndUpdate(req.params.id, { $pull: { comments: req.params.comment}  })
+        .then(() => Comment.findByIdAndRemove(req.params.comment))
+        .then(res.redirect('/dashboard'))
+          .catch( e=>res.redirect('/dashboard'))}}
+    );}
 
 };
