@@ -24,6 +24,10 @@ module.exports = {
     const date = req.body.date;
     const sport = req.body.sport;
     const playersNumber = req.body.maxnum;
+    const location = {
+      type: "Point",
+      coordinates: [req.body.lat, req.body.lon]
+    };
 
     if (date === "" || sport === "" || playersNumber === 0) {
       res.render("dashboard/new", {
@@ -37,7 +41,8 @@ module.exports = {
     const newMatch = new Match({
         date,
         sport,
-        playersNumber
+        playersNumber,
+        location
       })
       .save()
       .then(match => res.redirect('/dashboard'))
@@ -59,7 +64,7 @@ module.exports = {
       return res.render('dashboard/edit', {
         user: req.user,
         match
-        
+
       });
     });
   },

@@ -47,10 +47,8 @@ function initMap() {
         scaledSize: new google.maps.Size(35, 35)
       }));
       marker.setPosition(place.geometry.location);
-      // document.getElementById('lat').value = place.geometry.location.lat();
-      // document.getElementById('lon').value = place.geometry.location.lng();
-      lat = place.geometry.location.lat();
-      long = place.geometry.location.lng();
+      document.getElementById('lat').value = place.geometry.location.lat();
+      document.getElementById('lon').value = place.geometry.location.lng();
       marker.setVisible(true);
 
       var address = '';
@@ -64,9 +62,6 @@ function initMap() {
 
       infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
       infowindow.open(map, marker);
-
-      console.log("LAT: " + lat);
-      console.log("LONG: " + long);
     });
 
   }
