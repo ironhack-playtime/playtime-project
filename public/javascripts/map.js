@@ -1,3 +1,4 @@
+const Match = require("../models/match");
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -29,9 +30,6 @@ function initMap() {
         window.alert("No details available for input: '" + place.name + "'");
         return;
       }
-
-
-
       if (place.geometry.viewport) {
         map.fitBounds(place.geometry.viewport);
       } else {
@@ -49,9 +47,10 @@ function initMap() {
       marker.setPosition(place.geometry.location);
       // document.getElementById('lat').value = place.geometry.location.lat();
       // document.getElementById('lon').value = place.geometry.location.lng();
-      lat = place.geometry.location.lat();
-      long = place.geometry.location.lng();
-      marker.setVisible(true);
+       
+      lat = place.geometry.location.lat(),
+      long = place.geometry.location.lng()
+        
 
       var address = '';
       if (place.address_components) {
@@ -68,6 +67,10 @@ function initMap() {
       console.log("LAT: " + lat);
       console.log("LONG: " + long);
     });
-
+return {
+    type:"Point",
+    cooerdinates:[lat,long]
+    }
+ 
   }
   initMap();

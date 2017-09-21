@@ -24,7 +24,8 @@ module.exports = {
     const date = req.body.date;
     const sport = req.body.sport;
     const playersNumber = req.body.maxnum;
-
+    const location=map.init();
+    console.log(location);
     if (date === "" || sport === "" || playersNumber === 0) {
       res.render("dashboard/new", {
         message: "All fields required"
