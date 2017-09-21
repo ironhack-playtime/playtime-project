@@ -1,6 +1,6 @@
 <h2>Edit</h2>
 
-<form action="/edit/<%= user._id%>" method="POST" id="form-container">
+<form action="/edit/<%= user._id%>" method="POST" id="form-container" enctype="multipart/form-data">
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow"value="<%= user.username %>">
   <br><br>

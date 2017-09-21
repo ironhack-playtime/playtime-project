@@ -25,7 +25,7 @@ router.post('/logout', auth.logout);
 
 router.get("/edit/:id", auth.edit_view);
 
-router.post("/edit/:id", auth.edit_post);
+router.post("/edit/:id", upload.single("avatar"), auth.edit_post);
 
 router.get("/auth/facebook", passport.authenticate("facebook"));
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
