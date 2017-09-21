@@ -194,6 +194,7 @@ module.exports = {
   },
 
   delete_comment: (req, res, next) => {
+<<<<<<< HEAD
     Comment.findById(req.params.comment,(err,comment)=>{
       if(1 != 1){console.log("ouch",comment._creatorId,"    ",req.user._id)
        res.redirect('/dashboard')}
@@ -204,5 +205,21 @@ module.exports = {
         .then(res.redirect('/dashboard'))
           .catch( e=>res.redirect('/dashboard'))}}
     );}
+=======
+    Comment.findById(req.params.comment, (err, comentario) => {
+      if(comentario._creatorId.toString() !== req.user._id.toString()){
+        res.redirect("/dashboard");
+      }
+      else{
+        Match.findByIdAndUpdate(req.params.id, { $pull: { comments: req.params.comment}  })
+        .then(() => Comment.findByIdAndRemove(req.params.comment))
+        .then(res.redirect('/dashboard'))
+        .catch( e => res.redirect('/dashboard'));
+      }
+    });
+  }
+
+
+>>>>>>> 5da3d6bcd9caf420c980d3cfdcccc3c24301e385
 
 };
