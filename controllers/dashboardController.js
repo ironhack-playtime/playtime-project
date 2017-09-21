@@ -25,6 +25,7 @@ module.exports = {
     const date = req.body.date;
     const sport = req.body.sport;
     const playersNumber = req.body.maxnum;
+    const creator=req.user.id
     const location = {
       type: "Point",
       coordinates: [req.body.lat, req.body.lon]
@@ -43,6 +44,7 @@ module.exports = {
         date,
         sport,
         playersNumber,
+        creator,
         location
       })
       .save()
@@ -97,10 +99,16 @@ module.exports = {
   },
 
   match_delete: (req, res, next) => {
+    Match.findById(req.params.id,(err,match)=>{
+      if(match.creator!==req.user.id)
+      res.redirect('/dashboard')
+      else{
     Match.findByIdAndRemove(req.params.id, (err, match) => {
 
       res.redirect('/dashboard');
     });
+  }
+  })
 
   },
 
