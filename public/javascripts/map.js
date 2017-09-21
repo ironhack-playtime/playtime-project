@@ -1,7 +1,10 @@
 
 function initMap() {
+    var latitud = Number(document.getElementById('lat').value);
+    var longitud = Number(document.getElementById('lon').value);
+    console.log("LONG: " + latitud + longitud);
     var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 40.3930556, lng: -3.5430555555555556},
+      center: {lat: latitud || 40.3930556, lng: longitud || -3.5430555555555556},
       zoom: 13
     });
 
