@@ -41,15 +41,17 @@ module.exports = {
 
       debug("User created");
 
+      const img = (req.file) ? `/avatars/${req.file.filename}` : "/avatars/avatar.jpg";
+
       const newUser = new User({
           username,
           password: hashPass,
           phone,
           mail,
-          pic_path:`/avatars/${req.file.filename}`
+          pic_path: img
         })
         .save()
-        .then(user => res.redirect('/'))
+        .then(() => res.redirect('/'))
         .catch(e => res.render("auth/signup", {
           message: "Something went wrong"
         }));
