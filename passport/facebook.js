@@ -1,6 +1,4 @@
 require('dotenv').config();
-// clientID: process.env.PATH_FBID,
-// clientSecret:process.env.PATH_FBP,
 const passport = require('passport');
 const User = require('../models/user');
 const FbStrategy = require('passport-facebook').Strategy;

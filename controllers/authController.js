@@ -39,12 +39,8 @@ module.exports = {
         });
         return;
       }
-
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
-
-      debug("User created");
-
 
       const newUser = new User({
           username,

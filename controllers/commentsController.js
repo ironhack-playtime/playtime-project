@@ -15,32 +15,20 @@ module.exports = {
   },
 
   add_comment: (req, res, next) => {
-    const _creatorId = req.user.id;
-    const description = req.body.comment;
-
-    if (description === "") {
-      res.render("comments/new-comment", {
-        user: req.user,
-        message: "Write something"
-      });
-      return;
-    }
-
-    debug("Comment created");
-
-    const newComment = new Comment({
-        _creatorId,
-        description
+  
+  
+     new Comment({
+        _creatorId:req.user.id,
+        description:req.body.comment
       })
       .save()
       .then(comment => {
         Match.findByIdAndUpdate(req.params.id, {
-          $push: {
-            "comments": comment._id
-          }
-        }).then(match => res.redirect('/dashboard'));
-      })
-      .catch(e => res.render("comments/new-comment", {
+          $push: {"comments": comment._id}
+        })
+        .then(match => res.redirect('/dashboard')); })
+      .catch(e =>   
+         res.render("comments/new-comment", {
         user: req.user,
         message: "Something went wrong"
       }));
