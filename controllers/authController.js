@@ -22,8 +22,11 @@ module.exports = {
     const mail = req.body.mail;
     const img = (req.file) ? `/avatars/${req.file.filename}` : "/avatars/avatar.jpg";
 
-    if (username === "" || password === "" || phone === "" ||  mail === "") {
-      res.render("auth/signup", { message: "Indicate username and password" });
+    if (username === "" || password === "") {
+      res.render("auth/signup", {
+        message: "Indicate username and password",
+        user: res.locals.user
+      });
       return;
     }
 
