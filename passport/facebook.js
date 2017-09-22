@@ -6,8 +6,8 @@ passport.use(new FbStrategy({
   clientID: process.env.PATH_FBID,
   clientSecret: process.env.PATH_FBP,
   callbackURL: "/auth/facebook/callback"
-}, (accessToken, refreshToken, profile, next) => {
-  console.log(profile);
+}, (accessToken, refreshToken, profile, picture, next) => {
+  console.log("AQUI BRO", picture);
   User.findOne({ FBID: profile.id }, (err, user) => {
     if (err) {
       return next(err);
@@ -18,9 +18,9 @@ passport.use(new FbStrategy({
 
     const newUser = new User({
       FBID: profile.id,
-      username: profile.displayName
+      username: profile.displayName,
     });
-
+    
     newUser.save((err) => {
       if (err) {
         return next(err);

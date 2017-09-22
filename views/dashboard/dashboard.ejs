@@ -1,6 +1,8 @@
 <h1>Hola <%= user.username %></h1>
 <img src="<%= user.pic_path %>"width="200px"height="200px">
-
+<% if (typeof message != "undefined") { %>
+  <div class="error-message"><%= message %></div>
+<% } %>
 <h2>List of matches</h2>
 
 
@@ -44,5 +46,3 @@
     <br>
     <%  }) %>
 </ul>
-
-<a href="/">Back home...</a>

@@ -1,4 +1,8 @@
 <!-- views/auth/signup.ejs -->
+<% if (typeof message != "undefined") { %>
+  <div class="error-message"><%= message %></div>
+<% } %>
+
 <h2>Signup</h2>
 
 <form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">

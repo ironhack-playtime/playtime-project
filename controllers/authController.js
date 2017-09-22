@@ -53,7 +53,7 @@ module.exports = {
           pic_path: img
         })
         .save()
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/login'))
         .catch(e => res.render("auth/signup", {
           message: "Something went wrong"
         }));
