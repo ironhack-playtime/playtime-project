@@ -1,4 +1,6 @@
 require('dotenv').config();
+// clientID: process.env.PATH_FBID,
+// clientSecret:process.env.PATH_FBP,
 const passport = require('passport');
 const User = require('../models/user');
 const FbStrategy = require('passport-facebook').Strategy;
@@ -6,10 +8,12 @@ const FbStrategy = require('passport-facebook').Strategy;
 passport.use(new FbStrategy({
   clientID: process.env.PATH_FBID,
   clientSecret:process.env.PATH_FBP,
-  callbackURL: "/auth/facebook/callback"
+  callbackURL: "/auth/facebook/callback",
+  profileFields: ['id', 'displayName', 'name', 'gender',  'picture.type(large)']
+  
 }, (accessToken, refreshToken, profile, next) => {
-  console.log(profile);
-  User.findOne({ facebookID: profile.id }, (err, user) => {
+  console.log(profile.photos);
+  User.findOne({ FBID: profile.id }, (err, user) => {
     if (err) {
       return next(err);
     }
@@ -18,8 +22,10 @@ passport.use(new FbStrategy({
     }
 
     const newUser = new User({
-      facebookID: profile.id,
-      username: profile.displayName
+      FBID: profile.id,
+      username: profile.displayName,
+      pic_path: profile.photos ? profile.photos[0].value : '/avatars/avatar.jpg'
+      
     });
 
     newUser.save((err) => {
