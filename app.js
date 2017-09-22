@@ -14,6 +14,7 @@ require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
 const dashboardRoutes = require('./routes/dashboard');
+const commentRoutes = require('./routes/comments');
 
 const debug = require('debug')("app:"+path.basename(__filename).split('.')[0]);
 
@@ -63,6 +64,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRoutes);
 app.use('/', dashboardRoutes);
+app.use('/', commentRoutes);
 app.get('/', (req,res) => res.render('home',{user:req.user}));
 
 

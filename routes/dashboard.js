@@ -21,10 +21,4 @@ router.get('/dashboard/view/:id/new-player',ensureLoggedIn(),dashboardController
 
 router.get('/dashboard/:id/deletemyself',ensureLoggedIn(),dashboardController.match_deleteme);
 
-router.get('/dashboard/:id/new-comment',ensureLoggedIn(), dashboardController.new_comment);
-
-router.post('/dashboard/:id/new-comment', dashboardController.add_comment);
-
-router.get('/dashboard/:id/:comment',ensureLoggedIn(), dashboardController.delete_comment);
-
 module.exports = router;
