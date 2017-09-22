@@ -32,17 +32,21 @@
                 <% match.comments.forEach(c=>{ %>
                   <li>
                     <%= c.description %>
+                  <% if (user._id == c._creatorId.toString()){ %>
                     <a href="/dashboard/<%= match._id%>/<%= c._id%>">Delete comment</a>
+                  <% } %>
                   </li>
                   <% }) %>
               </ol>
             </p>
     </a>
     <br>
-    <a href="/dashboard/view/delete/<%= match._id%>">Delete item</a>
-    <br>
-    <a href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
-    </li>
-    <br>
+    <% if (user._id == match.creator){ %>
+      <a href="/dashboard/view/delete/<%= match._id%>">Delete item</a>
+    <% } %>
+      <br>
+      <a href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
+      </li>
+      <br>
     <%  }) %>
 </ul>
