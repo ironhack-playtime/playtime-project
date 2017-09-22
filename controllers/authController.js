@@ -20,11 +20,10 @@ module.exports = {
     const password = req.body.password;
     const phone = req.body.phone;
     const mail = req.body.mail;
+    const img = (req.file) ? `/avatars/${req.file.filename}` : "/avatars/avatar.jpg";
 
     if (username === "" || password === "" || phone === "" ||  mail === "") {
-      res.render("auth/signup", {
-        message: "All fields requiered"
-      });
+      res.render("auth/signup", { message: "Indicate username and password" });
       return;
     }
 
@@ -43,7 +42,6 @@ module.exports = {
 
       debug("User created");
 
-      const img = (req.file) ? `/avatars/${req.file.filename}` : "/avatars/avatar.jpg";
 
       const newUser = new User({
           username,
