@@ -25,15 +25,17 @@ module.exports = {
     const date = req.body.date;
     const sport = req.body.sport;
     const playersNumber = req.body.maxnum;
-    const creator=req.user.id
+    const creator = req.user.id;
     const location = {
       type: "Point",
       coordinates: [req.body.lat, req.body.lon]
     };
 
-    if (date === "" || sport === "" || playersNumber === 0) {
+    if (date === "" || sport === "" || playersNumber === 0 || req.body.lat === "" || req.body.lan === "") {
+      console.log(location + " / " + location.coordinates);
       res.render("dashboard/new", {
-        message: "All fields required"
+        message: "All fields required",
+        user: res.locals.user
       });
       return;
     }
@@ -101,14 +103,14 @@ module.exports = {
   match_delete: (req, res, next) => {
     Match.findById(req.params.id,(err,match)=>{
       if(match.creator!==req.user.id)
-      res.redirect('/dashboard')
+      res.redirect('/dashboard');
       else{
     Match.findByIdAndRemove(req.params.id, (err, match) => {
 
       res.redirect('/dashboard');
     });
   }
-  })
+});
 
   },
 
