@@ -11,10 +11,13 @@
     <a href="/dashboard/view/<%= match._id %>">
       <li>
         <%= match.date%>
+        <% if (match.players.toString().indexOf(user._id.toString()) < 0) { %>
           <a href="/dashboard/view/<%= match._id %>/new-player">añadirme al partido</a>
           <br>
+        <% } else { %>
           <a href="/dashboard/<%= match._id %>/deletemyself">delete me from the list</a>
           <br>
+          <% } %>
           <%= match.sport %>
             <br>
             <p>jugadores:
