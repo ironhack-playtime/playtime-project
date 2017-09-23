@@ -7,49 +7,19 @@
 
 
 <ul>
+    <div class="others">
+        <h1>LOS  MIOS OSTIA </h1>
   <% matches.forEach( match => { %>
-    <a href="/dashboard/view/<%= match._id %>">
-      <li>
-        <%= match.date%>
-        <% if (match.players.toString().indexOf(user._id.toString()) < 0) { %>
-          <a href="/dashboard/view/<%= match._id %>/new-player">añadirme al partido</a>
-          <br>
-        <% } else { %>
-          <a href="/dashboard/<%= match._id %>/deletemyself">delete me from the list</a>
-          <br>
-          <% } %>
-          <%= match.sport %>
-            <br>
-            <p>jugadores:
-              <ol>
-                <% match.players.forEach(p=>{ %>
-                  <li>
-                    <%= p.username %>
-                  </li>
-                  <% }) %>
-              </ol>
-            </p>
-            <br>
-            <p>comentarios:
-              <ol>
-                <% match.comments.forEach(c=>{ %>
-                  <li>
-                    <%= c.description %>
-                  <% if (user._id == c._creatorId.toString()){ %>
-                    <a href="/dashboard/<%= match._id%>/<%= c._id%>">Delete comment</a>
-                  <% } %>
-                  </li>
-                  <% }) %>
-              </ol>
-            </p>
-    </a>
-    <br>
-    <% if (user._id == match.creator){ %>
-      <a href="/dashboard/view/delete/<%= match._id%>">Delete item</a>
-    <% } %>
-      <br>
-      <a href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
-      </li>
-      <br>
+      <% if (match.players.toString().indexOf(user._id.toString())>=0 ){%>     
+        <%- include("../partials/matchData",{match}) %>
+    
+      <% } %>
+    <%  }) %>
+   <div class="others">
+   <h1>LOS NO MIOS</h1>
+    <% matches.forEach( match => { %>        
+       <% if (match.players.toString().indexOf(user._id.toString())<0 ){ %>
+          <%- include("../partials/matchData", {match}) %>
+      <%}%>
     <%  }) %>
 </ul>
