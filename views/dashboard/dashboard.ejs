@@ -9,7 +9,7 @@
 <ul>
   <% matches.forEach( match => { %>
     <a href="/dashboard/view/<%= match._id %>">
-      <li>
+      <div class="match-<%= match._id %>">
         <%= match.date%>
         <% if (match.players.toString().indexOf(user._id.toString()) < 0) { %>
           <a href="/dashboard/view/<%= match._id %>/new-player">añadirme al partido</a>
@@ -49,7 +49,12 @@
     <% } %>
       <br>
       <a href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
-      </li>
+    </div>
       <br>
     <%  }) %>
 </ul>
+<script> var myMatches = <%- JSON.stringify(matches) %>; </script>
+<script src="/javascripts/external/jquery/jquery.min.js" charset="utf-8"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.PATH_GMaps%>&libraries=places"></script>
+<script src="/javascripts/map2.js" ></script>
+<script src="/javascripts/main.js"></script>
