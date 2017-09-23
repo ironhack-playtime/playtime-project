@@ -1,35 +1,42 @@
-<!-- views/auth/signup.ejs -->
-<% if (typeof message != "undefined") { %>
-  <div class="error-message"><%= message %></div>
-<% } %>
+<h2 class="signup-title">Signup</h2>
 
-<h2>Signup</h2>
-
-<form action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
-  <br><br>
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-  <br><br>
-  <label for="phone">Phone</label>
-  <input id="phone" type="number" name="phone" placeholder="Phone number">
-  <br><br>
-  <label for="mail">Email</label>
-  <input id="mail" type="email" name="mail" placeholder="name@domain.com">
-  <br><br>
-  <label for="avatar"> Avatar </label>
-  <input type="file" name="avatar" id="avatar" placeholder="Your picture">
+<form class="signup-form" action="/signup" method="POST" id="form-container" enctype="multipart/form-data">
+  <div class="container">
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username">
+  </div>
+  <div class="container">
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password">
+  </div>
+  <div class="container">
+    <label for="phone">Phone</label>
+    <input id="phone" type="number" name="phone">
+  </div>
+  <div class="container">
+    <label for="mail">Email</label>
+    <input id="mail" type="email" name="mail">
+  </div>
+  <div class="image-upload container">
+    <label for="avatar"> Avatar </label>
+    <input class="button" type="file" name="avatar" id="avatar">
+  </div>
 
   <% if (typeof message !== "undefined") { %>
-    <div class="error-message"><%= message %></div>
-  <% } %>
-  <br><br>
+    <div class="error-message container">
+      <%= message %>
+    </div>
+    <% } %>
 
-  <button>Create account</button>
+      <div class="signup-button container">
+        <button>Create account</button>
+      </div>
+      <br>
+      <div class="container">
+        <p class="account-message">
+          Do you already have an account?
+          <a href="/login"><strong>Login</strong></a>
+        </p>
+      </div>
 
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
 </form>
