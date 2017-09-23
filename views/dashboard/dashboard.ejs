@@ -23,3 +23,8 @@
       <%}%>
     <%  }) %>
 </ul>
+<script> var myMatches = <%- JSON.stringify(matches) %>; </script>
+<script src="/javascripts/external/jquery/jquery.min.js" charset="utf-8"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=process.env.PATH_GMaps%>&libraries=places"></script>
+<script src="/javascripts/map2.js" ></script>
+<script src="/javascripts/main.js"></script>

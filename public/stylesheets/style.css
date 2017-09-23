@@ -8,6 +8,10 @@ a {
   text-decoration: none;
   color: white;
 }
+#map {
+  height: 100%;
+}
+ 
 
 .title {
   color: white;
@@ -146,4 +150,9 @@ a {
 
 #pac-input{
   width: 500px;
+}
+
+.penny {
+  height: 200px;
+  width: 200px;
 }
