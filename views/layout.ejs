@@ -2,24 +2,13 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <% if(user) { %>
-      <h2>Hola, <%= user.username %></h2>
-      <form action="/logout" method="POST">
-        <button>Logout</button>
-        <br><br>
-      </form>
-      <a href="/dashboard">dashboard</a>
-      <a href="/dashboard/new">new match</a>
-      <a href="/edit/<%= user._id %>">edit your profile</a>
-    <% }else{ %>
-      <a href="/signup">Signup</a>
-      <a href="/login">Login</a>
-      <a href="/auth/facebook">Login CON FACEBOOK</a>
-    <% } %>
+    <h1 class="title"><%= title %></h1>
+
     <%- body %>
   </body>
 </html>

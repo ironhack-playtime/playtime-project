@@ -1,10 +1,23 @@
-
-<p>HOME!</p>
-
 <% if(user) { %>
-  <h2>Hola usuario <%= user.username %></h2>
   <form action="/logout" method="POST">
     <button>Logout</button>
+    <br><br>
   </form>
+  <a href="/dashboard">dashboard</a>
+  <a href="/dashboard/new">new match</a>
+  <a href="/edit/<%= user._id %>">edit your profile</a>
+<% }else{ %>
+<div class="welcome container">
 
+  <div class="signup">
+    <a href="/signup">Signup</a>
+  </div>
+  <div class="login">
+    <a href="/login">Login</a>
+  </div>
+  <div class="facebook">
+    <a href="/auth/facebook">Facebook login</a>
+  </div>
+
+</div>
 <% } %>
