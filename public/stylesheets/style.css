@@ -162,6 +162,36 @@ a:hover {
   font-size: 2vw;
 }
 
+.new-match {
+  color: white;
+}
+
+.new-match-form {
+  background: yellow;
+  width:40%;
+}
+
+.new-match-form input {
+  background: #9F7C9F;
+  border: 0px solid black;
+  border-radius: 10%;
+  width: 20%;
+  height: 40px;
+  font-size: 1vw;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .error-message {
   margin-top: 20px;
   font-size: 1.2vw;
@@ -171,12 +201,12 @@ a:hover {
 }
 
 #map {
-  height: 700px;
-  width: 700px;
+  height: 300px;
+  width: 300px;
 }
 
 #pac-input{
-  width: 500px;
+  width: 130px;
 }
 
 .penny {
