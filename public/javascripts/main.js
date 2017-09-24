@@ -30,18 +30,18 @@
     event.preventDefault(); 
     console.log("lo pillo")
     const idm=$(".add-player").attr("match-id")
-    console.log(idm)
     $.get(`/dashboard/view/${idm}/new-player`)
     $(".add-player").parent().closest("div").parent().closest("div").appendTo(".mine")
 })
 $(".delete-player").on("click",event=>{
-    event.preventDefault(); 
-    console.log("lo pillo")
-    const idc=$("delete-player").attr("match-id")
-    console.log(idm)
-    $.get(`/dashboard/view/${idc}/deletemyself`)
-    $(".add-player").parent().closest("div").parent().closest("div").appendTo(".others")
-})
+        event.preventDefault(); 
+        console.log("lo pillo")
+        const idc=$(".delete-player").attr("match-id")
+        $.get(`/dashboard/${idc}/deletemyself`)
+        $(".delete-player").parent().closest("div").parent().closest("div").appendTo(".others")
+    })
+
+
     })
      
      
