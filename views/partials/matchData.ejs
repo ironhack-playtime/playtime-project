@@ -32,7 +32,7 @@
 <div class="col-md-6">
   <div class="dash-map" id="map-<%= match._id%>"></div>
   <p>comentarios:
-    <ul>
+    <ul class="comments-ol-<%= match._id%>">
       <% match.comments.forEach(c=>{ %>
         <li>
           <em>(<%= c._creatorName %>)</em>
@@ -42,6 +42,7 @@
               <% } %>
         </li>
         <% }) %>
+      </ul>
           <a class="new-coment2" data-id="<%= match._id%>" href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
 
           <div class="new-coment">
@@ -52,7 +53,7 @@
 
             </form>
           </div>
-    </ul>
+    
   </p>
   </a>
   <br>
