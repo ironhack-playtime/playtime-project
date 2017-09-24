@@ -140,6 +140,28 @@ a:hover {
   color: lightgrey;
 }
 
+.link {
+  width: 100%;
+  font-size: 2vw;
+  color: #F8EEE7;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.menu {
+  position: relative;
+  display: inline-block;
+}
+
+.logout {
+  display: inline-block;
+}
+
+.hello {
+  color: white;
+  font-size: 2vw;
+}
+
 .error-message {
   margin-top: 20px;
   font-size: 1.2vw;

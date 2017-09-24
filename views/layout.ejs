@@ -15,14 +15,9 @@
 
   <% if(user) { %>
     <h1 class="title"><a href="/dashboard"><%= title %></a></h1>
-    <h2>Hola, <%= user.username %></h2>
-    <form action="/logout" method="POST">
-      <button>Logout</button>
-      <br><br>
+    <h2 class="hello">Hola, <%= user.username %></h2>
+    <br>
     </form>
-    <a href="/dashboard">dashboard</a>
-    <a href="/dashboard/new">new match</a>
-    <a href="/edit/<%= user._id %>">edit your profile</a>
     <% }else{ %>
       <h1 class="title"><a href="/"><%= title %></a></h1>
       <% } %>

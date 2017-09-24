@@ -1,11 +1,14 @@
 <% if(user) { %>
+  <div class="menu">
+    <a class="link" href="/dashboard">dashboard</a>
+    <a class="link" href="/dashboard/new">new match</a>
+    <a class="link" href="/edit/<%= user._id %>">edit your profile</a>
+  </div>
+  <br><br><br>
   <form action="/logout" method="POST">
-    <button>Logout</button>
-    <br><br>
+    <button class="logout">Logout</button>
   </form>
-  <a href="/dashboard">dashboard</a>
-  <a href="/dashboard/new">new match</a>
-  <a href="/edit/<%= user._id %>">edit your profile</a>
+
 <% }else{ %>
 <div class="welcome container">
 
