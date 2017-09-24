@@ -14,8 +14,11 @@
 
 
   <% if(user) { %>
-    <h1 class="title"><a href="/dashboard"><%= title %></a></h1>
+    <form action="/logout" method="POST">
+      <button class="logout">Logout</button>
+    </form>
     <h2 class="hello">Hola, <%= user.username %></h2>
+    <h1 class="title"><a href="/dashboard"><%= title %></a></h1>
     <br>
     </form>
     <% }else{ %>

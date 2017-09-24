@@ -14,9 +14,7 @@ a:hover {
   color: white;
 }
 
-#map {
-  height: 100%;
-}
+#map {}
 
 .title {
   color: white;
@@ -117,7 +115,6 @@ a:hover {
   font-size: 1.5vw;
 }
 
-
 .signup-button {
   text-align: center;
   width: 100%;
@@ -154,43 +151,46 @@ a:hover {
 }
 
 .logout {
-  display: inline-block;
+  clear: both;
 }
 
 .hello {
+  float: left;
   color: white;
-  font-size: 2vw;
+  font-size: 1.5vw;
 }
 
 .new-match {
-  color: white;
+  margin-left: 350px;
 }
 
 .new-match-form {
-  background: yellow;
-  width:40%;
+  width: 20%;
+  display: inline;
+  color: white;
+}
+
+#form-container {
+  width: 50%;
 }
 
 .new-match-form input {
   background: #9F7C9F;
   border: 0px solid black;
   border-radius: 10%;
-  width: 20%;
+  width: 100%;
   height: 40px;
   font-size: 1vw;
   text-align: center;
 }
 
+#maxnum {
+  width: 50%;
+}
 
-
-
-
-
-
-
-
-
-
+.new-match-form label {
+  font-size: 1.2vw;
+}
 
 .error-message {
   margin-top: 20px;
@@ -201,17 +201,31 @@ a:hover {
 }
 
 #map {
-  height: 300px;
-  width: 300px;
+  height: 320px;
+  width: 320px;
+  display: inline-block;
 }
 
-#pac-input{
-  width: 130px;
+#pac-input {
+  width: 160px;
+  background: white;
+  margin-top: 8px;
+  height: 30px;
+}
+
+.cancel {
+  font-size: 1.5vw;
+}
+
+.create-match {
+  color: purple;
 }
 
 .penny {
   height: 200px;
   width: 200px;
 }
-.new-coment{
-display: none;}
+
+.new-coment {
+  display: none;
+}
