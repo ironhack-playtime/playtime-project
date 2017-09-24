@@ -35,7 +35,7 @@ module.exports = {
       console.log(location + " / " + location.coordinates);
       res.render("dashboard/new", {
         message: "All fields required",
-        user: res.locals.user
+        user: req.user
       });
       return;
     }
@@ -153,5 +153,5 @@ module.exports = {
       return res.redirect('/dashboard');
     });
   },
-  
+
 };

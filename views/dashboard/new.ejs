@@ -11,25 +11,23 @@
         <input id="sport" type="text" name="sport">
         <br><br>
         <label for="maxnum">Number of players:</label>
-        <input id="maxnum" type="number" name="maxnum">
+        <input class="maxnum" id="maxnum" type="number" name="maxnum">
         <br><br>
         <input id="lat" name="lat" type="hidden">
         <input id="lon" name="lon" type="hidden">
         <br><br>
         <input type="text" id="pac-input" class="controls">
     </div>
-    <div class="col-md-8">
-
+    <div class="col-md-6">
       <div id="map"></div>
+      <br>
+      <button class="create-match">Create match</button>
       <% if (typeof message !== "undefined") { %>
         <div class="error-message">
           <%= message %>
         </div>
         <% } %>
-          <br>
-          <button class="create-match">Create match</button>
-          <br><a class="cancel" href="/dashboard">Cancel</a>
-
+      <br><a class="cancel" href="/dashboard">Cancel</a>
     </div>
 
     </form>
