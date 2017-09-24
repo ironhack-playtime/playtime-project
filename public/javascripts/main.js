@@ -23,12 +23,10 @@
      url:`/dashboard/${id}/new-comment`,
      dataType:'json',
     data:data
-    }).then($(".comments-ol-"+id).append(`<li><span class="tab">${data.comment}</span></a></li> <a href="/dashboard/${id}/${idc}">Delete comment</a>`));
+    }).then($(".comments-ol-"+id).append(`<li class ="deleting"><span class="tab">${data.comment}</span></a></li> <a href="/dashboard/${id}/${idc}">Delete comment</a>`));
     //problems with deletind and comment_id (we dont have it jet)
     })
-    
-    
-     
+ 
      
     })
      
