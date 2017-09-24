@@ -30,16 +30,38 @@
 </div>
 
 <div class="col-md-6">
-  <div class="dash-map" id="map-<%= match._id%>"></div>
-  <p>comentarios:
-    <ul>
-      <% match.comments.forEach(c=>{ %>
-        <li>
-          <em>(<%= c._creatorName %>)</em>
-          <%= c.description %>
-            <% if (user._id == c._creatorId.toString()){ %>
-              <br><a class="delete" href="/dashboard/<%= match._id%>/<%= c._id%>">Delete comment</a>
-              <% } %>
+            <div class="dash-map" id="map-<%= match._id%>"></div>
+              <p>comentarios:
+                <ol class="comments-ol">
+                  <% match.comments.forEach(c=>{ %>
+                    <li>
+                      <%= c.description %>
+                    <% if (user._id == c._creatorId.toString()){ %>
+                      <a class="delete" href="/dashboard/<%= match._id%>/<%= c._id%>" data-idc="<%= c._id%>">Delete comment</a>
+                    <% } %>
+                    </li>
+                    <% }) %>
+                  </ol>
+                  <a  class="new-coment2" data-id="<%= match._id%>" href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
+
+                    <div class="new-coment">
+                        <form action='/dashboard/<%= match.id %>/new-comment' method="POST" id="form-container">
+                          <textarea id="comment-val" type="textarea" name="comment" placeholder="Your text here..."></textarea>
+
+                          <br><br>
+
+                          <button class="create-comment">Create comment</button>
+
+                        </form>
+                        </div>
+
+              </p>
+      </a>
+      <br>
+      <% if (user._id == match.creator){ %>
+        <a href="/dashboard/view/delete/<%= match._id%>">Delete item</a>
+      <% } %>
+        <br>
         </li>
         <% }) %>
           <a class="new-coment2" data-id="<%= match._id%>" href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
@@ -48,7 +70,7 @@
             <form action='/dashboard/<%= match.id %>/new-comment' method="POST" id="form-container">
               <textarea id="comment-val" type="textarea" name="comment" placeholder="Your text here..."></textarea>
               <br><button class="create-comment">Add comment</button>
-              
+
 
             </form>
           </div>

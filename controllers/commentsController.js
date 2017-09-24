@@ -18,18 +18,19 @@ module.exports = {
 
  add_comment: (req, res, next) => {
 
-
+  console.log(req.body)
      new Comment({
         _creatorId:req.user.id,
         _creatorName: req.user.username,
         description:req.body.comment
       })
       .save()
-      .then(comment => {
+      .then(comment => {console.log("entro", comment._id)
         Match.findByIdAndUpdate(req.params.id, {
           $push: {"comments": comment._id}
         })
-        .then(match => res.redirect('/dashboard')); })
+        .then(match =>console.log("pushok"));
+       })
       .catch(e =>
          res.render("comments/new-comment", {
         user: req.user,

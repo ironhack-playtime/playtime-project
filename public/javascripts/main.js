@@ -1,7 +1,9 @@
 $(function() {
-// console.log($(".new-coment").css("display"))
-// const id=$(".new-coment2").attr("data-id")
-// console.log(id)
+//add comment
+ const id=$(".new-coment2").attr("data-id")
+ const idc=$(".new-coment2").attr("data-idc")
+ 
+ console.log(id, "el di ")
 $(".new-coment2").on("click",event=>{
     event.preventDefault();
     if ($(".new-coment").css("display")=="none")
@@ -9,18 +11,22 @@ $(".new-coment2").on("click",event=>{
     else
     $(".new-coment").css("display", "none")
 })
-$(".create-comment").on("click","submit",function (e){
+$(".create-comment").on("click",function (e){
 e.preventDefault();
-
+data={comment:document.getElementById("comment-val").value}
 $.ajax({
 method:"POST",
 url:`/dashboard/${id}/new-comment`,
 dataType:'json',
-
-}).then(console.log("yupiiii"))
-
-
+data:data
+}).then($(".comments-ol").append(`<li><span class="tab">${data.comment}</span></a></li> <a href="/dashboard/${id}/${idc}">Delete comment</a>`));
+//problems with deletind and comment_id (we dont have it jet)
 })
+
+
+
+
+
 
 
  })
