@@ -33,6 +33,18 @@
                     <% } %>
                     </li>
                     <% }) %>
+                    <a  class="new-coment2" data-id="<%= match._id%>" href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
+                    
+                    <div class="new-coment">
+                        <form action='/dashboard/<%= match.id %>/new-comment' method="POST" id="form-container">
+                          <textarea id="comment-val" type="textarea" name="comment" placeholder="Your text here..."></textarea>
+                        
+                          <br><br>
+                        
+                          <button class="create-comment">Create comment</button>
+                        
+                        </form>
+                        </div>
                 </ol>
               </p>
       </a>
@@ -41,7 +53,6 @@
         <a href="/dashboard/view/delete/<%= match._id%>">Delete item</a>
       <% } %>
         <br>
-        <a href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
         </li>
         <br>
       
