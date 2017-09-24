@@ -14,7 +14,9 @@ module.exports = {
     });
   },
 
-  add_comment: (req, res, next) => {
+ 
+  
+ add_comment: (req, res, next) => {
   
   
      new Comment({
@@ -33,6 +35,7 @@ module.exports = {
         message: "Something went wrong"
       }));
   },
+
 
   delete_comment: (req, res, next) => {
     Comment.findById(req.params.comment, (err, comentario) => {
