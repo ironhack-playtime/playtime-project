@@ -9,6 +9,6 @@ router.get('/dashboard/:id/new-comment',ensureLoggedIn(), commentsController.new
 
 router.post('/dashboard/:id/new-comment', commentsController.add_comment);
 
-router.get('/dashboard/delete/:id/:comment',ensureLoggedIn(), commentsController.delete_comment);
+router.get('/dashboard/:id/:comment',ensureLoggedIn(), commentsController.delete_comment);
 
 module.exports = router;

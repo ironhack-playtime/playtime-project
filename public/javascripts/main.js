@@ -23,11 +23,17 @@
      url:`/dashboard/${id}/new-comment`,
      dataType:'json',
     data:data
-    }).then($(".comments-ol-"+id).append(`<li class ="deleting"><span class="tab">${data.comment}</span></a></li> <a href="/dashboard/${id}/${idc}">Delete comment</a>`));
+    }).then($(".comments-ol-"+id).append(`<li ><span class="tab">${data.comment}</span></a></li> <a class="deleting-comment" href="#">Delete comment</a>`));
     //problems with deletind and comment_id (we dont have it jet)
     })
- 
-     
+ $(".add-player").on("click",event=>{
+    event.preventDefault(); 
+    console.log("lo pillo")
+    const idm=$(".add-player").attr("match-id")
+    console.log(idm)
+    $.get(`/dashboard/view/${idm}/new-player`)
+    $(".add-player").parent().closest("div").parent().closest("div").appendTo(".mine")
+})
     })
      
      

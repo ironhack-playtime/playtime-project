@@ -1,3 +1,4 @@
+<div class="match">
 <div class="col-md-6">
   <% if (user._id == match.creator){ %>
     <a class="delete" href="/dashboard/view/delete/<%= match._id%>"><strong>Delete match</strong></a>
@@ -18,7 +19,7 @@
                     </li>
                     <% }) %>
                       <% if (match.players.toString().indexOf(user._id.toString()) < 0) { %>
-                        <br><a href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>
+                        <br><a class="add-player" match-id="<%= match._id %>" href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>
                         <br>
                         <% } else { %>
                           <br><a href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>
@@ -59,4 +60,5 @@
   <br>
   </li>
   <br>
+</div>
 </div>
