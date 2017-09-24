@@ -11,16 +11,19 @@
 </head>
 
 <body>
-
-
   <% if(user) { %>
-    <form action="/logout" method="POST">
-      <button class="logout">Logout</button>
-    </form>
-    <h2 class="hello">Hola, <%= user.username %></h2>
-    <h1 class="title"><a href="/dashboard"><%= title %></a></h1>
-    <br>
-    </form>
+    <div class="header col-md-6">
+      <img class="col-sm-2" src="<%= user.pic_path %>"><br>
+      <h2 class="hello">Hola, <%= user.username %></h2>
+      <br><a href="/dashboard/new">New Match</a>
+      <a href="/dashboard">Dashboard</a>
+      <form class="col-md-4" action="/logout" method="POST">
+        <button class="logout">Logout</button>
+      </form>
+    </div>
+    <h1 class="title col-md-4"><a href="/dashboard"><%= title %></a></h1>
+    <div class="clear"></div>
+    <br><br>
     <% }else{ %>
       <h1 class="title"><a href="/"><%= title %></a></h1>
       <% } %>
