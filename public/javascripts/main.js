@@ -1,5 +1,4 @@
-
- $(function() {
+$(function() {
     // console.log($(".new-coment").css("display"))
     // const id=$(".new-coment2").attr("data-id")
     // console.log(id)
@@ -39,7 +38,7 @@
     const idm=$(".add-player").attr("match-id")
     $.get(`/dashboard/view/${idm}/new-player`)
     $(".add-player").parent().closest("div").parent().closest("div").appendTo(".mine")
-    $(".add-player").replaceWith(<a class="delete-player" match-id="<%= match._id %>" href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>)
+    $(".add-player").replaceWith('<a class="delete-player" match-id="<%= match._id %>" href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>')
 })
 
  //add match to rest matches
@@ -49,30 +48,8 @@ $(".delete-player").on("click",event=>{
         const idc=$(".delete-player").attr("match-id")
         $.get(`/dashboard/${idc}/deletemyself`)
         $(".delete-player").parent().closest("div").parent().closest("div").appendTo(".others")
-        $(".delete-player").replaceWith(<a class="add-player" match-id="<%= match._id %>" href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>)
+        $(".delete-player").replaceWith('<a class="add-player" match-id="<%= match._id %>" href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>')
     })
 
 
     })
-     
-     
-      
-//  add_comment: (req, res, next) => {
-  
-  
-//      new Comment({
-//         _creatorId:req.user.id,
-//         description:req.body.comment
-//       })
-//       .save()
-//       .then(comment => {
-//         Match.findByIdAndUpdate(req.params.id, {
-//           $push: {"comments": comment._id}
-//         })
-//         .then(match => res.redirect('/dashboard')); })
-//       .catch(e =>   
-//          res.render("comments/new-comment", {
-//         user: req.user,
-//         message: "Something went wrong"
-//       }));
-//   },
