@@ -22,7 +22,7 @@
                         <br><a class="add-player" match-id="<%= match._id %>" href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>
                         <br>
                         <% } else { %>
-                          <br><a href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>
+                          <br><a class="delete-player" href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>
                           <br>
                           <% } %>
                 </ol>
