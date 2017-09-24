@@ -228,7 +228,7 @@ a:hover {
 }
 
 #pac-input {
-  width: 160px;
+  width: 200px;
   background: white;
   margin-top: 8px;
   height: 30px;
@@ -272,11 +272,35 @@ a:hover {
   color: purple;
 }
 
-.penny {
+.dash-map {
   height: 200px;
   width: 200px;
 }
 
+em {
+  font-style: italic;
+  font-size: 1vw;
+  color: #FEE;
+}
+
 .new-coment {
   display: none;
+}
+
+.dashboard {
+  color: white;
+  font-size: 1.2vw;
+}
+
+.delete {
+  font-size: 1.2vw;
+  color: #FFAAAA;
+}
+
+#comment-val {
+  color: black;
+}
+
+.create-comment {
+  color: black;
 }

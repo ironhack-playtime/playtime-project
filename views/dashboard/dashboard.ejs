@@ -1,27 +1,35 @@
-
-<% if (typeof message != "undefined") { %>
-  <div class="error-message"><%= message %></div>
-<% } %>
-<h2>List of matches</h2>
+<div class="dashboard">
 
 
-<ul>
-    <div class="others">
-        <h1>My matches </h1>
-  <% matches.forEach( match => { %>
-      <% if (match.players.toString().indexOf(user._id.toString())>=0 ){%>
-        <%- include("../partials/matchData",{match}) %>
+  <% if (typeof message != "undefined") { %>
+    <div class="error-message">
+      <%= message %>
+    </div>
+    <% } %>
 
-      <% } %>
-    <%  }) %>
-   <div class="others">
-   <h1>Available matches</h1>
-    <% matches.forEach( match => { %>
-       <% if (match.players.toString().indexOf(user._id.toString())<0 ){ %>
-          <%- include("../partials/matchData", {match}) %>
-      <%}%>
-    <%  }) %>
-</ul>
+      <ul>
+        <div class="others col-md-6">
+          <h1>My matches </h1>
+          <% matches.forEach( match => { %>
+            <% if (match.players.toString().indexOf(user._id.toString())>=0 ){%>
+              <%- include("../partials/matchData",{match}) %>
+
+                <% } %>
+                  <%  }) %>
+        </div>
+
+        <div class="others col-md-6">
+          <h1>Available matches</h1>
+          <% matches.forEach( match => { %>
+            <% if (match.players.toString().indexOf(user._id.toString())<0 ){ %>
+              <%- include("../partials/matchData", {match}) %>
+                <%}%>
+                  <%  }) %>
+
+        </div>
+      </ul>
+</div>
+
 <script> var myMatches = <%- JSON.stringify(matches) %> </script>
 <script
 src="https://code.jquery.com/jquery-3.2.1.js"

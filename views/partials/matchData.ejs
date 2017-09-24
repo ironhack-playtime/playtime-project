@@ -1,59 +1,61 @@
+<div class="col-md-6">
+  <% if (user._id == match.creator){ %>
+    <a class="delete" href="/dashboard/view/delete/<%= match._id%>"><strong>Delete match</strong></a>
+    <% } %>
+      <br>
 
-    <a href="/dashboard/view/<%= match._id %>">
-        <li>
-          <%= match.date%>
-          <% if (match.players.toString().indexOf(user._id.toString()) < 0) { %>
-            <a href="/dashboard/view/<%= match._id %>/new-player">añadirme al partido</a>
-            <br>
-          <% } else { %>
-            <a href="/dashboard/<%= match._id %>/deletemyself">delete me from the list</a>
-            <br>
-            <% } %>
+      <a href="/dashboard/view/<%= match._id %>">
+        <li>Match date:
+          <%= match.date.toISOString().substring(0,10) %>
+            Sport:
             <%= match.sport %>
               <br>
-              <p>jugadores:
+              <p>Actual players:
                 <ol>
                   <% match.players.forEach(p=>{ %>
                     <li>
                       <%= p.username %>
                     </li>
                     <% }) %>
+                      <% if (match.players.toString().indexOf(user._id.toString()) < 0) { %>
+                        <br><a href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>
+                        <br>
+                        <% } else { %>
+                          <br><a href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>
+                          <br>
+                          <% } %>
                 </ol>
               </p>
               <br>
+</div>
 
-            <div class="penny" id="map-<%= match._id%>"></div>
-              <p>comentarios:
-                <ol>
-                  <% match.comments.forEach(c=>{ %>
-                    <li>
-                      <%= c.description %>
-                    <% if (user._id == c._creatorId.toString()){ %>
-                      <a href="/dashboard/<%= match._id%>/<%= c._id%>">Delete comment</a>
-                    <% } %>
-                    </li>
-                    <% }) %>
-                    <a  class="new-coment2" data-id="<%= match._id%>" href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
-                    
-                    <div class="new-coment">
-                        <form action='/dashboard/<%= match.id %>/new-comment' method="POST" id="form-container">
-                          <textarea id="comment-val" type="textarea" name="comment" placeholder="Your text here..."></textarea>
-                        
-                          <br><br>
-                        
-                          <button class="create-comment">Create comment</button>
-                        
-                        </form>
-                        </div>
-                </ol>
-              </p>
-      </a>
-      <br>
-      <% if (user._id == match.creator){ %>
-        <a href="/dashboard/view/delete/<%= match._id%>">Delete item</a>
-      <% } %>
-        <br>
+<div class="col-md-6">
+  <div class="dash-map" id="map-<%= match._id%>"></div>
+  <p>comentarios:
+    <ul>
+      <% match.comments.forEach(c=>{ %>
+        <li>
+          <em>(<%= c._creatorName %>)</em>
+          <%= c.description %>
+            <% if (user._id == c._creatorId.toString()){ %>
+              <br><a class="delete" href="/dashboard/<%= match._id%>/<%= c._id%>">Delete comment</a>
+              <% } %>
         </li>
-        <br>
-      
-      </div>
+        <% }) %>
+          <a class="new-coment2" data-id="<%= match._id%>" href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
+
+          <div class="new-coment">
+            <form action='/dashboard/<%= match.id %>/new-comment' method="POST" id="form-container">
+              <textarea id="comment-val" type="textarea" name="comment" placeholder="Your text here..."></textarea>
+              <br><button class="create-comment">Add comment</button>
+              
+
+            </form>
+          </div>
+    </ul>
+  </p>
+  </a>
+  <br>
+  </li>
+  <br>
+</div>

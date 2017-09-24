@@ -14,13 +14,14 @@ module.exports = {
     });
   },
 
- 
-  
+
+
  add_comment: (req, res, next) => {
-  
-  
+
+
      new Comment({
         _creatorId:req.user.id,
+        _creatorName: req.user.username,
         description:req.body.comment
       })
       .save()
@@ -29,7 +30,7 @@ module.exports = {
           $push: {"comments": comment._id}
         })
         .then(match => res.redirect('/dashboard')); })
-      .catch(e =>   
+      .catch(e =>
          res.render("comments/new-comment", {
         user: req.user,
         message: "Something went wrong"
