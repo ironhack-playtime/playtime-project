@@ -22,9 +22,17 @@ data:data
 }).then($(".comments-ol").append(`<li><span class="tab">${data.comment}</span></a></li> <a href="/dashboard/${id}/${idc}">Delete comment</a>`));
 //problems with deletind and comment_id (we dont have it jet)
 })
+const idd=$(".delete-comment").attr("data-id")
+const iddc=$(".delete-comment").attr("data-idc")
+console.log(idd,iddc)
+$(".delete-comment").on("click",function (e){
+    e.preventDefault();
+    $.get(`/dashboard/delete/${idd}/${iddc}`)
+        .then(console.log("ok"))
+    
+    
 
-
-
+})
 
 
 

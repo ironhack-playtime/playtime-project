@@ -29,7 +29,7 @@
                     <li>
                       <%= c.description %>
                     <% if (user._id == c._creatorId.toString()){ %>
-                      <a href="/dashboard/<%= match._id%>/<%= c._id%>" data-idc="<%= c._id%>">Delete comment</a>
+                      <a class="delete-comment"href="/dashboard/<%= match._id%>/<%= c._id%>" data-id="<%= match._id%>" data-idc="<%= c._id%>">Delete comment</a>
                     <% } %>
                     </li>
                     <% }) %>
