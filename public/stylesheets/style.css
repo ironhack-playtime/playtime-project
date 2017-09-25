@@ -298,6 +298,11 @@ em {
   color: #FFAAAA;
 }
 
+.edit {
+  font-size: 1.2vw;
+  color: #AAAAFF;
+}
+
 #comment-val {
   color: black;
 }
