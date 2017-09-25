@@ -30,7 +30,7 @@ router.post("/edit/:id", upload.single("avatar"), auth.edit_post);
 
 router.get("/auth/facebook", passport.authenticate("facebook"));
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/",
+  successRedirect: "/dashboard",
   failureRedirect: "/"
 }));
 
