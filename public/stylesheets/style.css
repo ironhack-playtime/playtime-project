@@ -1,16 +1,312 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: #94618E;
 }
 
 a {
-  color: #00B7FF;
-}
-#map {
-  height: 700px;
-  width: 700px;
+  text-decoration: none;
+  color: white;
 }
 
-#pac-input{
-  width: 500px;
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+#map {}
+
+.title {
+  color: white;
+  font-size: 4vw;
+  float: left;
+}
+
+.header {
+  float: left;
+  margin: 0 50px;
+  display: inline-block;
+}
+
+.clear {
+  clear: both;
+}
+
+.header a {
+  vertical-align: middle;
+  font-size: 1.2vw;
+  margin: 0 10px;
+}
+
+.header img {
+  border-radius: 50%;
+}
+
+.logout {;
+}
+
+.hello {
+  vertical-align: middle;
+  display: inline;
+  color: white;
+  font-size: 1.5vw;
+  margin-right: 20px;
+}
+
+.welcome {
+  margin-top: 70px;
+  width: 40%;
+}
+
+.welcome div {
+  background: #49274A;
+  margin: 10px;
+  text-align: center;
+  border-radius: 10%;
+}
+
+.welcome a {
+  vertical-align: middle;
+  width: 100%;
+  font-size: 2vw;
+  color: #F8EEE7;
+  text-decoration: none;
+}
+
+.login-div {
+  width: 40%;
+}
+
+.login-title {
+  color: white;
+  text-align: center;
+}
+
+.login-form div {
+  width: 80%;
+}
+
+.login-form label {
+  font-size: 2vw;
+}
+
+.login-form input {
+  background: #9F7C9F;
+  border: 0px solid black;
+  border-radius: 10%;
+  width: 100%;
+  height: 40px;
+  font-size: 1.5vw;
+  text-align: center;
+}
+
+.login-button {
+  text-align: center;
+  width: 100%;
+}
+
+.login-form button {
+  margin-top: 20px;
+  border-radius: 10%;
+  height: 50px;
+  font-size: 1.5vw;
+  width: 40%;
+}
+
+.signup-div {
+  width: 40%;
+}
+
+.signup-title {
+  color: white;
+  text-align: center;
+}
+
+.signup-form div {
+  width: 80%;
+}
+
+.signup-form label {
+  font-size: 1.2vw;
+}
+
+.signup-form input {
+  background: #9F7C9F;
+  border: 0px solid black;
+  border-radius: 10%;
+  width: 100%;
+  height: 40px;
+  font-size: 1.2vw;
+  text-align: center;
+}
+
+.image-upload input {
+  color: #9F7C9F;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.5vw;
+}
+
+.signup-button {
+  text-align: center;
+  width: 100%;
+}
+
+.signup-form button {
+  margin-top: 20px;
+  border-radius: 10%;
+  height: 50px;
+  font-size: 1.5vw;
+  width: 40%;
+}
+
+.signup-form p {
+  font-size: 1.4vw;
+  color: white;
+}
+
+.signup-form a {
+  color: lightgrey;
+}
+
+.link {
+  width: 100%;
+  font-size: 2vw;
+  color: #F8EEE7;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.menu {
+  position: relative;
+  display: inline-block;
+}
+
+.new-match {
+  margin-left: 200px;
+}
+
+.new-match-form {
+  width: 20%;
+  display: inline;
+  color: white;
+}
+
+#form-container {
+  width: 50%;
+}
+
+.new-match-form input {
+  background: #9F7C9F;
+  border: 0px solid black;
+  border-radius: 10%;
+  width: 100%;
+  height: 40px;
+  font-size: 1vw;
+  text-align: center;
+}
+
+.maxnum {
+  width: 50%;
+}
+
+.new-match-form label {
+  font-size: 1.2vw;
+}
+
+.error-message {
+  margin-top: 20px;
+  font-size: 1.2vw;
+  color: white;
+  text-align: justify;
+  width: 100vw;
+}
+
+#map {
+  height: 250px;
+  width: 250px;
+  display: inline-block;
+}
+
+#pac-input {
+  width: 200px;
+  background: white;
+  margin-top: 8px;
+  height: 30px;
+  color: black;
+}
+
+.edit-match {
+  margin-left: 200px;
+  color: white;
+}
+
+.edit-match-form {
+  width: 20%;
+  display: inline;
+  color: white;
+}
+
+.edit-maxnum {
+  width: 20%;
+}
+
+.edit-match-form input {
+  background: #9F7C9F;
+  border: 0px solid black;
+  border-radius: 10%;
+  width: 60%;
+  height: 40px;
+  font-size: 1vw;
+  text-align: center;
+}
+
+.edit-match-form label {
+  font-size: 1.2vw;
+}
+
+.cancel {
+  font-size: 1.5vw;
+}
+
+.create-match {
+  color: purple;
+}
+
+.dash-map {
+  height: 200px;
+  width: 200px;
+}
+
+em {
+  font-style: italic;
+  font-size: 1vw;
+  color: #FEE;
+}
+
+.new-coment {
+  display: none;
+}
+
+.dashboard {
+  color: white;
+  font-size: 1.2vw;
+}
+
+.delete {
+  font-size: 1.2vw;
+  color: #FFAAAA;
+}
+
+.edit {
+  font-size: 1.2vw;
+  color: #AAAAFF;
+}
+
+#comment-val {
+  color: black;
+}
+
+.create-comment {
+  color: black;
 }

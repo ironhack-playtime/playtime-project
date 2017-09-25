@@ -20,10 +20,12 @@ module.exports = {
     const password = req.body.password;
     const phone = req.body.phone;
     const mail = req.body.mail;
+    const img = (req.file) ? `/avatars/${req.file.filename}` : "/avatars/avatar.jpg";
 
-    if (username === "" || password === "" || phone === "" ||  mail === "") {
+    if (username === "" || password === "") {
       res.render("auth/signup", {
-        message: "All fields requiered"
+        message: "Indicate username and password",
+        user: res.locals.user
       });
       return;
     }
@@ -37,13 +39,8 @@ module.exports = {
         });
         return;
       }
-
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
-
-      debug("User created");
-
-      const img = (req.file) ? `/avatars/${req.file.filename}` : "/avatars/avatar.jpg";
 
       const newUser = new User({
           username,
@@ -53,7 +50,7 @@ module.exports = {
           pic_path: img
         })
         .save()
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/login'))
         .catch(e => res.render("auth/signup", {
           message: "Something went wrong"
         }));

@@ -25,15 +25,17 @@ module.exports = {
     const date = req.body.date;
     const sport = req.body.sport;
     const playersNumber = req.body.maxnum;
-    const creator=req.user.id
+    const creator = req.user.id;
     const location = {
       type: "Point",
       coordinates: [req.body.lat, req.body.lon]
     };
 
-    if (date === "" || sport === "" || playersNumber === 0) {
+    if (date === "" || sport === "" || playersNumber === 0 || req.body.lat === "" || req.body.lan === "") {
+      console.log(location + " / " + location.coordinates);
       res.render("dashboard/new", {
-        message: "All fields required"
+        message: "All fields required",
+        user: req.user
       });
       return;
     }
@@ -101,14 +103,14 @@ module.exports = {
   match_delete: (req, res, next) => {
     Match.findById(req.params.id,(err,match)=>{
       if(match.creator!==req.user.id)
-      res.redirect('/dashboard')
+      res.redirect('/dashboard');
       else{
     Match.findByIdAndRemove(req.params.id, (err, match) => {
 
       res.redirect('/dashboard');
     });
   }
-  })
+});
 
   },
 
@@ -151,62 +153,5 @@ module.exports = {
       return res.redirect('/dashboard');
     });
   },
-
-  new_comment: (req, res, next) => {
-    Match.findById(req.params.id, (err, match) => {
-      res.render("comments/new-comment", {
-        user: req.user,
-        match
-      });
-    });
-  },
-
-  add_comment: (req, res, next) => {
-    const _creatorId = req.user.id;
-    const description = req.body.comment;
-
-    if (description === "") {
-      res.render("comments/new-comment", {
-        user: req.user,
-        message: "Write something"
-      });
-      return;
-    }
-
-    debug("Comment created");
-
-    const newComment = new Comment({
-        _creatorId,
-        description
-      })
-      .save()
-      .then(comment => {
-        Match.findByIdAndUpdate(req.params.id, {
-          $push: {
-            "comments": comment._id
-          }
-        }).then(match => res.redirect('/dashboard'));
-      })
-      .catch(e => res.render("comments/new-comment", {
-        user: req.user,
-        message: "Something went wrong"
-      }));
-  },
-
-  delete_comment: (req, res, next) => {
-    Comment.findById(req.params.comment, (err, comentario) => {
-      if(comentario._creatorId.toString() !== req.user._id.toString()){
-        res.redirect("/dashboard");
-      }
-      else{
-        Match.findByIdAndUpdate(req.params.id, { $pull: { comments: req.params.comment}  })
-        .then(() => Comment.findByIdAndRemove(req.params.comment))
-        .then(res.redirect('/dashboard'))
-        .catch( e => res.redirect('/dashboard'));
-      }
-    });
-  }
-
-
 
 };

@@ -1,3 +1,7 @@
+<% if (typeof message != "undefined") { %>
+  <div class="error-message"><%= message %></div>
+<% } %>
+
 <h2>Edit</h2>
 
 <form action="/edit/<%= user._id%>" method="POST" id="form-container" enctype="multipart/form-data">
@@ -11,16 +15,15 @@
   <input id="phone" type="number" name="phone" placeholder="Phone number"value="<%= user.phone %>">
   <br><br>
   <label for="mail">Email</label>
-  <input id="mail" type="text" name="mail" placeholder="name@domain.com"value="<%= user.mail %>">
+  <input id="mail" type="email" name="mail" placeholder="name@domain.com"value="<%= user.mail %>">
   <br><br>
   <label for="avatar"> Avatar </label>
   <input type="file" name="avatar" id="avatar" placeholder="Your picture">
 
-  <% if (typeof message !== "undefined") { %>
-    <div class="error-message"><%= message %></div>
-  <% } %>
+
   <br><br>
 
   <button>Save</button>
+  <a href="/dashboard">Cancel</a>
 
 </form>

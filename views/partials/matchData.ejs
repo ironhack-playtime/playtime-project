@@ -1,0 +1,63 @@
+<div class="match">
+    <div class="col-md-6">
+      <% if (user._id == match.creator){ %>
+        <a class="edit" href="/dashboard/view/<%= match._id %>"><strong>Edit match</strong></a>
+        <br><a class="delete" href="/dashboard/view/delete/<%= match._id%>"><strong>Delete match</strong></a>
+        <% } %>
+          <br>
+            <li>Match date:
+              <%= match.date.toISOString().substring(0,10) %>
+                <br>Sport:
+                <%= match.sport %>
+                  <br>
+                  <p>Actual players:
+                    <ol>
+                      <% match.players.forEach(p=>{ %>
+                        <li>
+                          <%= p.username %>
+                        </li>
+                        <% }) %>
+                          <% if (match.players.toString().indexOf(user._id.toString()) < 0) { %>
+                            <br><a class="add-player" match-id="<%= match._id %>" href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>
+                            <br>
+                            <% } else { %>
+                              <br><a class="delete-player" match-id="<%= match._id %>" href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>
+                              <br>
+                              <% } %>
+                    </ol>
+                  </p>
+                  <br>
+    </div>
+
+    <div class="col-md-6">
+      <div class="dash-map" id="map-<%= match._id%>"></div>
+      <p>comentarios:
+        <ul class="comments-ol-<%= match._id%>">
+          <% match.comments.forEach(c=>{ %>
+            <li>
+              <em>(<%= c._creatorName %>)</em>
+              <%= c.description %>
+                <% if (user._id == c._creatorId.toString()){ %>
+                  <br><a class="delete" href="/dashboard/<%= match._id%>/<%= c._id%>">Delete comment</a>
+                  <% } %>
+            </li>
+            <% }) %>
+          </ul>
+              <a class="new-coment2" data-id="<%= match._id%>" href="/dashboard/<%= match._id %>/new-comment">Add comment</a>
+
+              <div class="new-coment">
+                <form action='/dashboard/<%= match.id %>/new-comment' method="POST" id="form-container">
+                  <textarea id="comment-val" type="textarea" name="comment" placeholder="Your text here..."></textarea>
+                  <br><button class="create-comment">Add comment</button>
+
+
+                </form>
+              </div>
+
+      </p>
+      </a>
+      <br>
+      </li>
+      <br>
+    </div>
+</div>
