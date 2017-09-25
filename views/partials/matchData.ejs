@@ -1,14 +1,13 @@
 <div clas="match">
     <div class="col-md-6">
       <% if (user._id == match.creator){ %>
-        <a class="delete" href="/dashboard/view/delete/<%= match._id%>"><strong>Delete match</strong></a>
+        <a class="edit" href="/dashboard/view/<%= match._id %>"><strong>Edit match</strong></a>
+        <br><a class="delete" href="/dashboard/view/delete/<%= match._id%>"><strong>Delete match</strong></a>
         <% } %>
           <br>
-
-          <a href="/dashboard/view/<%= match._id %>">
             <li>Match date:
               <%= match.date.toISOString().substring(0,10) %>
-                Sport:
+                <br>Sport:
                 <%= match.sport %>
                   <br>
                   <p>Actual players:
@@ -50,14 +49,18 @@
                 <form action='/dashboard/<%= match.id %>/new-comment' method="POST" id="form-container">
                   <textarea id="comment-val" type="textarea" name="comment" placeholder="Your text here..."></textarea>
                   <br><button class="create-comment">Add comment</button>
-                  
+
 
                 </form>
               </div>
-        
+
       </p>
       </a>
       <br>
       </li>
       <br>
     </div>
+<<<<<<< HEAD
+=======
+</div>
+>>>>>>> 8815b94015ae984f7cb8796242bb3abd6eb512b6
