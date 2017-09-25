@@ -2,11 +2,7 @@ $(function() {
     // console.log($(".new-coment").css("display"))
     // const id=$(".new-coment2").attr("data-id")
     // console.log(id)
-    //add comment
-     const id=$(".new-coment2").attr("data-id")
-     const idc=$(".new-coment2").attr("data-idc")
-     
-     console.log(id, "el di ")
+     const id=$(".new-coment2").attr("data-id")  
     //open/close new comment textarea
      $(".new-coment2").on("click",event=>{
          event.preventDefault();
@@ -15,7 +11,6 @@ $(function() {
          else
          $(".new-coment").css("display", "none")
      })
-
      //add new comment
     $(".create-comment").on("click",function (e){
      e.preventDefault();
@@ -31,25 +26,25 @@ $(function() {
 
 
 
-    //add match to mymatches
- $(".add-player").on("click",event=>{
-    event.preventDefault(); 
-    console.log("lo pillo")
-    const idm=$(".add-player").attr("match-id")
-    $.get(`/dashboard/view/${idm}/new-player`)
-    $(".add-player").parent().closest("div").parent().closest("div").appendTo(".mine")
-    $(".add-player").replaceWith('<a class="delete-player" match-id="<%= match._id %>" href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>')
-})
+//     //add match to mymatches
+//  $(".add-player").on("click",event=>{
+//     event.preventDefault(); 
+//     console.log("lo pillo")
+//     const idm=$(".add-player").attr("match-id")
+//     $.get(`/dashboard/view/${idm}/new-player`)
+//     $(".add-player").parent().closest("div").parent().closest("div").appendTo(".mine")
+//     $(".add-player").replaceWith('<a class="delete-player" match-id="<%= match._id %>" href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>')
+// })
 
- //add match to rest matches
-$(".delete-player").on("click",event=>{
-        event.preventDefault(); 
-        console.log("lo pillo")
-        const idc=$(".delete-player").attr("match-id")
-        $.get(`/dashboard/${idc}/deletemyself`)
-        $(".delete-player").parent().closest("div").parent().closest("div").appendTo(".others")
-        $(".delete-player").replaceWith('<a class="add-player" match-id="<%= match._id %>" href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>')
-    })
+//  //add match to rest matches
+// $(".delete-player").on("click",event=>{
+//         event.preventDefault(); 
+//         console.log("lo pillo")
+//         const idc=$(".delete-player").attr("match-id")
+//         $.get(`/dashboard/${idc}/deletemyself`)
+//         $(".delete-player").parent().closest("div").parent().closest("div").appendTo(".others")
+//         $(".delete-player").replaceWith('<a class="add-player" match-id="<%= match._id %>" href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>')
+//     })
 
 
-    })
+   })
