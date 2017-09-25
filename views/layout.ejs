@@ -17,7 +17,7 @@
       <h2 class="hello">Hola, <%= user.username %></h2>
       <a href="/dashboard/new">New Match</a>
       <a href="/dashboard">Dashboard</a>
-      <a href="/">Edit profile</a>
+      <a href="/edit/${user.id}">Edit profile</a>
       <form class="col-md-4" action="/logout" method="POST">
         <button class="logout">Logout</button>
       </form>
