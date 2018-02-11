@@ -26,25 +26,25 @@ $(function() {
 
 
 
-//     //add match to mymatches
-//  $(".add-player").on("click",event=>{
-//     event.preventDefault(); 
-//     console.log("lo pillo")
-//     const idm=$(".add-player").attr("match-id")
-//     $.get(`/dashboard/view/${idm}/new-player`)
-//     $(".add-player").parent().closest("div").parent().closest("div").appendTo(".mine")
-//     $(".add-player").replaceWith('<a class="delete-player" match-id="<%= match._id %>" href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>')
-// })
+    //add match to mymatches
+ $(".add-player").on("click",event=>{
+    event.preventDefault(); 
+    console.log("lo pillo")
+    const idm=$(".add-player").attr("match-id")
+    $.get(`/dashboard/view/${idm}/new-player`)
+    $(".add-player").parent().closest("div").parent().closest("div").appendTo(".mine")
+    $(".add-player").replaceWith('<a class="delete-player" match-id="<%= match._id %>" href="/dashboard/<%= match._id %>/deletemyself">Delete me from the game</a>')
+})
 
-//  //add match to rest matches
-// $(".delete-player").on("click",event=>{
-//         event.preventDefault(); 
-//         console.log("lo pillo")
-//         const idc=$(".delete-player").attr("match-id")
-//         $.get(`/dashboard/${idc}/deletemyself`)
-//         $(".delete-player").parent().closest("div").parent().closest("div").appendTo(".others")
-//         $(".delete-player").replaceWith('<a class="add-player" match-id="<%= match._id %>" href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>')
-//     })
+ //add match to rest matches
+$(".delete-player").on("click",event=>{
+        event.preventDefault(); 
+        console.log("lo pillo")
+        const idc=$(".delete-player").attr("match-id")
+        $.get(`/dashboard/${idc}/deletemyself`)
+        $(".delete-player").parent().closest("div").parent().closest("div").appendTo(".others")
+        $(".delete-player").replaceWith('<a class="add-player" match-id="<%= match._id %>" href="/dashboard/view/<%= match._id %>/new-player">Add me to the game</a>')
+    })
 
 
    })
