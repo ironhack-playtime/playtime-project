@@ -17,11 +17,19 @@ const dashboardRoutes = require('./routes/dashboard');
 const commentRoutes = require('./routes/comments');
 
 const debug = require('debug')("app:"+path.basename(__filename).split('.')[0]);
+var mysql = require('mysql');
+var con = mysql.createConnection({
+  host: "localhost",
+  port: 3306,
+  user: "root",
+  password: "holi123",
+  database: "playtime"
+});
 
-const mongoose = require("mongoose");
-mongoose.connect(process.env.PATH_DBURL,{useMongoClient:true})
-        .then(()=> console.log("connected to db!"));
-
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected to MySQL!");
+});
 var app = express();
 
 // view engine setup
@@ -41,10 +49,7 @@ app.use(session({
   secret: process.env.PATH_SECRET,
   resave: true,
   saveUninitialized: true,
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection,
-    ttl: 24 * 60 * 60 // 1 day
-  })
+ 
 }));
 
 require('./passport/serializers');
