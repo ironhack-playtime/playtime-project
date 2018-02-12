@@ -17,19 +17,8 @@ const dashboardRoutes = require('./routes/dashboard');
 const commentRoutes = require('./routes/comments');
 
 const debug = require('debug')("app:"+path.basename(__filename).split('.')[0]);
-var mysql = require('mysql');
-var con = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: process.env.MYSQL_PASS,
-  database: "playtime"
-});
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected to MySQL!");
-});
+require('./bin/db')
 var app = express();
 
 // view engine setup
